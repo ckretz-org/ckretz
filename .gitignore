@@ -38,3 +38,5 @@
 !/app/assets/builds/.keep
 config/database.yml 
 .idea/
+.git-hooks/
+
