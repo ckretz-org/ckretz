@@ -152,6 +152,11 @@ GEM
       dry-logic (>= 1.4, < 2)
       dry-types (>= 1.7, < 2)
       zeitwerk (~> 2.6)
+    dry-struct (1.6.0)
+      dry-core (~> 1.0, < 2)
+      dry-types (>= 1.7, < 2)
+      ice_nine (~> 0.11)
+      zeitwerk (~> 2.6)
     dry-types (1.7.2)
       bigdecimal (~> 3.0)
       concurrent-ruby (~> 1.0)
@@ -448,10 +453,6 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.30.0)
       parser (>= 3.2.1.0)
-    rubocop-capybara (2.20.0)
-      rubocop (~> 1.41)
-    rubocop-factory_bot (2.25.0)
-      rubocop (~> 1.33)
     rubocop-performance (1.20.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
@@ -460,12 +461,6 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
-    rubocop-rake (0.6.0)
-      rubocop (~> 1.0)
-    rubocop-rspec (2.26.1)
-      rubocop (~> 1.40)
-      rubocop-capybara (~> 2.17)
-      rubocop-factory_bot (~> 2.22)
     ruby-pg-extras (5.3.1)
       pg
       terminal-table
@@ -600,6 +595,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   debug
+  dry-struct
   factory_bot_rails
   faker
   faraday-retry
@@ -630,8 +626,6 @@ DEPENDENCIES
   rubocop (~> 1.59)
   rubocop-performance
   rubocop-rails
-  rubocop-rake
-  rubocop-rspec
   rubycritic
   selenium-webdriver
   shoulda-matchers

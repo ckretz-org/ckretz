@@ -55,6 +55,7 @@ gem "omniauth"
 gem "omniauth-github", "~> 2.0.0"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
+gem "dry-struct"
 
 group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
