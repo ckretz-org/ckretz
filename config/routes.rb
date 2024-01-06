@@ -11,4 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  get "auth/:provider/callback", to: "omniauth#callback"
+  post "auth/:provider/callback", to: "omniauth#callback"
+
 end
