@@ -39,4 +39,5 @@
 config/database.yml 
 .idea/
 .git-hooks/
+.bin/
 
