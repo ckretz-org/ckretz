@@ -64,6 +64,7 @@ group :development, :test do
   gem "rubycritic", require: false
   gem "rubocop", "~> 1.59", require: false
   gem "rubocop-rails", require: false
+  gem "rubocop-rails-omakase", require: false
   gem "rubocop-performance", require: false
   gem "guard-rubocop"
   gem "guard"
