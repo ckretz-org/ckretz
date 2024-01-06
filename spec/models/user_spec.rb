@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  describe 'associations' do
+    it { is_expected.to have_many(:secrets) }
+  end
+
   describe 'validation' do
     it 'validates email format' do
       expect(User.new(email: "bad-email").valid?).to be(false)

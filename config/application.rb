@@ -24,7 +24,7 @@ module Ckretz
                               routing_specs: false,
                               controller_specs: false,
                               request_specs: false
-      generate.fixture_replacement :factory_girl, dir: "spec/factories"
+      generate.fixture_replacement :factory_bot, dir: "spec/factories"
     end
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
