@@ -23,13 +23,13 @@ RSpec.configure do |config|
     dict = {
       type: "object",
       properties: {
-        url: {type: "string"},
-        created_at: {type: "string", format: "date-time"},
-        updated_at: {type: "string", format: "date-time"}
+        url: { type: "string" },
+        created_at: { type: "string", format: "date-time" },
+        updated_at: { type: "string", format: "date-time" }
       },
       required: required
     }
-    map = command.schema.keys.map { |k| {"#{k.name}": {type: k.type.name.to_s.gsub(/^NilClass \| /, "").downcase, nullable: !k.required}} }
+    map = command.schema.keys.map { |k| { "#{k.name}": { type: k.type.name.to_s.gsub(/^NilClass \| /, "").downcase, nullable: !k.required } } }
     map.each do |k|
       dict[:properties].merge!(k)
     end
@@ -44,32 +44,32 @@ RSpec.configure do |config|
     {
       type: "object",
       properties: {
-        totalPages: {type: :integer},
-        numberOfElements: {type: :integer},
-        totalElements: {type: :integer},
-        number: {type: :integer},
-        first: {type: :boolean},
-        last: {type: :boolean},
-        empty: {type: :boolean},
+        totalPages: { type: :integer },
+        numberOfElements: { type: :integer },
+        totalElements: { type: :integer },
+        number: { type: :integer },
+        first: { type: :boolean },
+        last: { type: :boolean },
+        empty: { type: :boolean },
         pageable: {
-          pageNumber: {type: :integer},
-          paged: {type: :boolean},
-          unpaged: {type: :boolean}
+          pageNumber: { type: :integer },
+          paged: { type: :boolean },
+          unpaged: { type: :boolean }
         },
         sortable: {
-          sort: {type: :string},
-          order: {type: :string, enum: %w[asc desc]}
+          sort: { type: :string },
+          order: { type: :string, enum: %w[asc desc] }
         },
         content: {
           type: "array",
-          items: {"$ref" => ref(type: type)}
+          items: { "$ref" => ref(type: type) }
         }
       }
     }
   end
 
   schemas = Hash[*Commands.constants.excluding(:Shared).map(&:downcase).map { |c|
-    ["#{c.to_s.pluralize}_page".to_sym, page(type: c), c, model(type: c)]
+    [ "#{c.to_s.pluralize}_page".to_sym, page(type: c), c, model(type: c) ]
   }.flatten]
 
   config.swagger_docs = {

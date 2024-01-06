@@ -3,9 +3,9 @@ if ENV["COVERAGE"]
   require "simplecov-console"
   require "simplecov-csv"
   SimpleCov.formatters = if ENV["COVERAGE_ONLY_HTML"]
-    SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::HTMLFormatter])
+    SimpleCov::Formatter::MultiFormatter.new([ SimpleCov::Formatter::HTMLFormatter ])
   else
-    SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::CSVFormatter, SimpleCov::Formatter::Console])
+    SimpleCov::Formatter::MultiFormatter.new([ SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::CSVFormatter, SimpleCov::Formatter::Console ])
   end
 
   SimpleCov.start "rails" do
@@ -19,7 +19,7 @@ if ENV["COVERAGE"]
   SimpleCov.minimum_coverage 80
   SimpleCov.minimum_coverage_by_file 80
   SimpleCov.refuse_coverage_drop
-  SimpleCov.coverage_dir "public/coverage"
+  SimpleCov.coverage_dir "coverage"
 end
 
 # require "shared/contexts/jwt_user"

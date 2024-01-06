@@ -14,5 +14,4 @@ Rails.application.routes.draw do
 
   get "auth/:provider/callback", to: "omniauth#callback"
   post "auth/:provider/callback", to: "omniauth#callback"
-
 end

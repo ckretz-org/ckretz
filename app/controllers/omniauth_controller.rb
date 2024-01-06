@@ -1,10 +1,16 @@
 class OmniauthController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:callback]
+  skip_before_action :verify_authenticity_token, only: [ :callback ]
   def callback
-    send params[:provider]
+    provider_name = params[:provider].to_sym
+    provider_callback = available_providers[provider_name]
+    send provider_callback
   end
 
   private
+  def available_providers
+    { google_oauth2: :google_oauth2, developer: :developer }
+  end
+
   def google_oauth2
     handle_auth
   end
@@ -22,7 +28,7 @@ class OmniauthController < ApplicationController
 
   def user_for(email:)
     command = Commands::Users::Create.new(email: email)
-    handler = CommandHandlers::Users::Create.handle(command: command, current_user_id: nil)
+    handler = CommandHandlers::Users::Create.handle(command: command)
     handler.object
   end
 end
