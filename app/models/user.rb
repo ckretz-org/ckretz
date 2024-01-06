@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   encrypts :email, deterministic: true, downcase: true
 
-  validates :email, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  validates :email, format: URI::MailTo::EMAIL_REGEXP
 
   after_commit do
     ActiveSupport::Notifications.instrument("created.user", { user: self })
