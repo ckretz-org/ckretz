@@ -91,7 +91,7 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgresql://postgres:postgres@localhost/ckretz_test:5432
           REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:setup && bin/bundle rspec
+        run: bin/rails db:setup && bin/bundle exec rspec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
