@@ -1,0 +1,6 @@
+
+<%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: 'btn' %>
+
+<% if Rails.env.development? %>
+  <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: 'btn' %>
+<% end %>
