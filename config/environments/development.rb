@@ -79,5 +79,4 @@ Rails.application.configure do
 
   # propshaft
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
 end
