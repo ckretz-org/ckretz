@@ -1,6 +1,6 @@
 
-<%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: 'btn' %>
+<%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
 
 <% if Rails.env.development? %>
-  <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: 'btn' %>
+  <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
 <% end %>
