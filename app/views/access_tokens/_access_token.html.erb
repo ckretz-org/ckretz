@@ -1,0 +1,7 @@
+<div id="<%= dom_id access_token %>">
+  <% if action_name != "show" %>
+    <%= link_to "Show this access token", access_token, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this access token", edit_access_token_path(access_token), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
