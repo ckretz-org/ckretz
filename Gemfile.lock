@@ -615,6 +615,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jwt
+  listen
   omniauth
   omniauth-github (~> 2.0.0)
   omniauth-google-oauth2

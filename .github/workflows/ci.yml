@@ -95,7 +95,7 @@ jobs:
           ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: keyderivationsaltbbbbbbbbbbbbbbb
           ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: primarykeycccccccddddddddddddddd
 
-        run: bin/rails db:setup && bin/bundle exec rspec
+        run: bin/rails db:setup && bundle exec rake assets:precompile && bin/bundle exec rspec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4

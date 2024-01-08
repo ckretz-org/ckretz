@@ -80,6 +80,7 @@ group :development do
   gem "web-console"
   gem "rack-mini-profiler"
   gem "spring"
+  gem "listen"
 end
 
 group :test do
