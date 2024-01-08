@@ -29,3 +29,5 @@
 
 en:
   hello: "Hello world"
+  login_with_google: "Login with Google"
+  login_with_developer: "Login with Developer"
