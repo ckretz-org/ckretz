@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_07_181021) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_08_041620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "token", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_access_tokens_on_name"
+    t.index ["token"], name: "index_access_tokens_on_token"
+    t.index ["user_id", "token"], name: "index_access_tokens_on_user_id_and_token"
+    t.index ["user_id"], name: "index_access_tokens_on_user_id"
+  end
 
   create_table "secrets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -21,6 +33,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_07_181021) do
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_secrets_on_name"
+    t.index ["user_id", "name"], name: "index_secrets_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_secrets_on_user_id"
   end
 
