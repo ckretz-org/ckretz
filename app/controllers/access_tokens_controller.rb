@@ -1,6 +1,6 @@
 class AccessTokensController < ApplicationController
   include CurrentUser
-  before_action :set_access_token, only: %i[ show edit update destroy ]
+  before_action :set_access_token, only: %i[ show destroy ]
 
   # GET /access_tokens or /access_tokens.json
   def index
@@ -16,10 +16,6 @@ class AccessTokensController < ApplicationController
     @access_token = current_user.access_tokens.new
   end
 
-  # GET /access_tokens/1/edit
-  def edit
-  end
-
   # POST /access_tokens or /access_tokens.json
   def create
     @access_token = current_user.access_tokens.new(access_token_params)
@@ -30,19 +26,6 @@ class AccessTokensController < ApplicationController
         format.json { render :show, status: :created, location: @access_token }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @access_token.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /access_tokens/1 or /access_tokens/1.json
-  def update
-    respond_to do |format|
-      if @access_token.update(access_token_params)
-        format.html { redirect_to access_token_url(@access_token), notice: "Access token was successfully updated." }
-        format.json { render :show, status: :ok, location: @access_token }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @access_token.errors, status: :unprocessable_entity }
       end
     end
