@@ -1,5 +1,5 @@
 class AccessToken < ApplicationRecord
-  belongs_to :user, optional: false
+  belongs_to :user, counter_cache: true, optional: false
   validates :name, presence: { strict: true }
   validates :token, presence: { strict: false }
 
