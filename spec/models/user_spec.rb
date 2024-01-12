@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe User do
   describe 'associations' do
-    it { is_expected.to have_many(:secrets) }
+    it { is_expected.to have_many(:secrets).dependent(:destroy) }
+    it { is_expected.to have_many(:access_tokens).dependent(:destroy) }
   end
 
   describe 'validation' do
