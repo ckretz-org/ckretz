@@ -3,7 +3,6 @@
 require "rails_helper"
 
 RSpec.describe ApplicationController, type: :request do
-
   describe "rescue_from" do
     before do
       allow_any_instance_of(AccessTokensController).to receive(:current_user).and_raise(Exceptions::NotAuthorized)
