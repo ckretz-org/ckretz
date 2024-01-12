@@ -3,13 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe AccessTokensController, type: :request do
-
   let(:current_user) { build(:user) }
   let(:access_token) { build(:access_token, user: current_user) }
   let(:current_user_access_tokens) { class_double(AccessToken) }
 
   before do
-    allow_any_instance_of(described_class).to receive(:session).and_return({current_user_id: current_user.id})
+    allow_any_instance_of(described_class).to receive(:session).and_return({ current_user_id: current_user.id })
     allow(User).to receive(:find_by_id).with(current_user.id).and_return(current_user)
     allow(current_user).to receive(:access_tokens).and_return(current_user_access_tokens)
     allow(current_user_access_tokens).to receive(:new).and_return(access_token)
@@ -18,7 +17,7 @@ RSpec.describe AccessTokensController, type: :request do
 
   describe "index" do
     before do
-      allow(current_user).to receive(:access_tokens).and_return([access_token])
+      allow(current_user).to receive(:access_tokens).and_return([ access_token ])
     end
     it do
       get access_tokens_path
@@ -48,7 +47,7 @@ RSpec.describe AccessTokensController, type: :request do
         allow_any_instance_of(AccessToken).to receive(:save).and_return(true)
       end
       it do
-        post access_tokens_path, params: {access_token: {name: "new_token_name"}}
+        post access_tokens_path, params: { access_token: { name: "new_token_name" } }
         expect(response.status).to eql(302)
       end
     end
@@ -57,7 +56,7 @@ RSpec.describe AccessTokensController, type: :request do
         allow_any_instance_of(AccessToken).to receive(:save).and_return(false)
       end
       it do
-        post access_tokens_path, params: {access_token: {name: "new_token_name"}}
+        post access_tokens_path, params: { access_token: { name: "new_token_name" } }
         expect(response.status).to eql(422)
       end
     end

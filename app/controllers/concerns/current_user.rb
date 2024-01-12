@@ -9,6 +9,5 @@ module CurrentUser
       RLS.set_tenant user
       user
     end
-
   end
 end

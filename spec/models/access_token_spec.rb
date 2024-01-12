@@ -22,5 +22,4 @@ RSpec.describe AccessToken, type: :model do
       expect(ActiveSupport::Notifications).to have_received(:instrument).twice
     end
   end
-
 end
