@@ -23,7 +23,7 @@ class OmniauthController < ApplicationController
     user_info = request.env["omniauth.auth"]
     current_user = user_for(email: user_info.info.email)
     session[:current_user_id] = current_user.id
-    redirect_to "/"
+    redirect_to access_tokens_path
   end
 
   def user_for(email:)
