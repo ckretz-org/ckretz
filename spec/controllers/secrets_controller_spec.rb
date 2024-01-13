@@ -69,4 +69,14 @@ RSpec.describe SecretsController, type: :request do
     end
   end
 
+  describe "destroy" do
+    before do
+      allow(secret).to receive(:destroy!)
+    end
+    it do
+      delete secret_path(id: secret.id)
+      expect(response.status).to eql(302)
+    end
+  end
+
 end
