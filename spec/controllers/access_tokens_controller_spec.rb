@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe AccessTokensController, type: :request do
   let(:current_user) { build(:user) }
