@@ -26,7 +26,7 @@ RSpec.describe OmniauthController, type: :request do
   describe "create" do
     before do
       allow(CommandHandlers::Users::Create).to receive(:handle).and_return(OpenStruct.new({ object: user }))
-      get "/auth/google_oauth2/callback"
+      post "/auth/google_oauth2/callback"
     end
 
     it "redirects to oauth server" do

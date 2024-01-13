@@ -4,8 +4,10 @@ RSpec.describe 'List access tokens', type: :feature do
   let(:user) { create(:user) }
   let!(:access_token) { create(:access_token, user: user) }
   before :each do
+    OmniAuth.config.test_mode = false
     visit welcome_path
-    click_on 'Login with Developer'
+    expect(page).to have_content("Login with Google\nLogin with Developer")
+    click_button 'Login with Developer'
     fill_in 'name', with: 'Developer Name'
     fill_in 'email', with: user.email
     click_on 'Sign In'

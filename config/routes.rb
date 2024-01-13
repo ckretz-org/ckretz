@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get "/welcome", to: "users#welcome"
   get "/", to: "users#welcome"
+  get "/logout", to: "users#logout"
 
   get "auth/:provider/callback", to: "omniauth#callback"
   post "auth/:provider/callback", to: "omniauth#callback"
