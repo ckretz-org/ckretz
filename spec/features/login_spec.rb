@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe 'Omniauth', type: :feature do
   let(:user) { create(:user) }
   scenario 'valid inputs' do
+    OmniAuth.config.test_mode = false
     visit welcome_path
     expect(page).to have_content("Login with Google\nLogin with Developer")
     click_on 'Login with Developer'
