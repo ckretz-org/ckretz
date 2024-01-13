@@ -69,6 +69,33 @@ RSpec.describe SecretsController, type: :request do
     end
   end
 
+  describe "update" do
+    context "valid attributes" do
+      before do
+        allow_any_instance_of(Secret).to receive(:save).and_return(true)
+      end
+      it do
+        patch secret_path(secret), params: { secret: { name: "new_secret_name", value: "value" } }
+        expect(response.status).to eql(302)
+      end
+    end
+    context "invalid attributes" do
+      it do
+        patch secret_path(secret), params: {}
+        expect(response.status).to eql(400)
+      end
+    end
+    context "validation failure" do
+      before do
+        allow_any_instance_of(Secret).to receive(:save).and_return(false)
+      end
+      it do
+        patch secret_path(secret), params: { secret: { name: "new_secret_name", value: "value" } }
+        expect(response.status).to eql(422)
+      end
+    end
+  end
+
   describe "destroy" do
     before do
       allow(secret).to receive(:destroy!)

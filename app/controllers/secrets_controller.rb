@@ -39,7 +39,7 @@ class SecretsController < ApplicationController
   def update
     respond_to do |format|
       if @secret.update(secret_params)
-        format.html { redirect_to secret_url(@secret), notice: "Secret was successfully updated." }
+        format.html { redirect_to secret_url(@secret), notice: "Successfully updated." }
         format.json { render :show, status: :ok, location: @secret }
       else
         format.html { render :edit, status: :unprocessable_entity }
