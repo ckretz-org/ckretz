@@ -52,6 +52,12 @@ RSpec.describe AccessTokensController, type: :request do
       end
     end
     context "invalid attributes" do
+      it do
+        post access_tokens_path, params: {}
+        expect(response.status).to eql(400)
+      end
+    end
+    context "validation failure" do
       before do
         allow_any_instance_of(AccessToken).to receive(:save).and_return(false)
       end
