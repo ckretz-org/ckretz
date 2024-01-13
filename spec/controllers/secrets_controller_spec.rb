@@ -31,6 +31,14 @@ RSpec.describe SecretsController, type: :request do
       get secret_path(id: secret.id)
       expect(response.status).to eql(200)
       expect(response.body).to include(secret.name)
+      expect(response.body).not_to include(secret.value)
+    end
+  end
+
+  describe "new" do
+    it do
+      get new_secret_path
+      expect(response.status).to eql(200)
     end
   end
 
