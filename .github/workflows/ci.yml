@@ -104,3 +104,51 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
+
+
+  ###### BUILD CONTAINER
+  build_container:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      -
+        name: Checkout code
+        uses: actions/checkout@v3
+      -
+        name: write package.json
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq --output-format=json -i '.sha = "${{ github.sha }}"' ./info.json
+      -
+        name: Install Ruby and gems
+        env:
+          BUNDLE_GITHUB__COM: ${{ secrets.BUNDLE_GITHUB__COM }}:x-oauth-basic
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: tillawy/ckretz
+          tags: |
+            type=raw,value=${{ github.sha }}
+      -
+        name: Docker buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push container image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: docker/Dockerfile.x86_64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
