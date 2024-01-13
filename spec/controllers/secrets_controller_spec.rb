@@ -42,4 +42,16 @@ RSpec.describe SecretsController, type: :request do
     end
   end
 
+  describe "create" do
+    context "valid attributes" do
+      before do
+        allow_any_instance_of(Secret).to receive(:save).and_return(true)
+      end
+      it do
+        post access_tokens_path, params: { secret: { name: "new_secret_name" } }
+        expect(response.status).to eql(302)
+      end
+    end
+  end
+
 end
