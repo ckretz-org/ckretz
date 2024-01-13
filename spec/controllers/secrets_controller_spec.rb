@@ -105,5 +105,4 @@ RSpec.describe SecretsController, type: :request do
       expect(response.status).to eql(302)
     end
   end
-
 end
