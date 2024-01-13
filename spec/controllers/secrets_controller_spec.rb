@@ -48,8 +48,17 @@ RSpec.describe SecretsController, type: :request do
         allow_any_instance_of(Secret).to receive(:save).and_return(true)
       end
       it do
-        post access_tokens_path, params: { secret: { name: "new_secret_name" } }
+        post access_tokens_path, params: { secret: { name: "new_secret_name", value: "value" } }
         expect(response.status).to eql(302)
+      end
+    end
+    context "invalid attributes" do
+      before do
+        allow_any_instance_of(Secret).to receive(:save).and_return(false)
+      end
+      it do
+        post secrets_path, params: { secret: { name: "new_secret_name", value: "value" } }
+        expect(response.status).to eql(422)
       end
     end
   end
