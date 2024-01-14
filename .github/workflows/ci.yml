@@ -121,12 +121,8 @@ jobs:
         with:
           cmd: yq --output-format=json -i '.sha = "${{ github.sha }}"' ./info.json
       -
-        name: Install Ruby and gems
-        env:
-          BUNDLE_GITHUB__COM: ${{ secrets.BUNDLE_GITHUB__COM }}:x-oauth-basic
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
       -
         name: Docker meta
         id: meta
@@ -153,4 +149,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
