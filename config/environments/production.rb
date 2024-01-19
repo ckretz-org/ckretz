@@ -51,10 +51,10 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
   config.ssl_options = {
-    redirect: {exclude: ->(request) {
+    redirect: { exclude: ->(request) {
       request.fullpath.include?("health") || request.fullpath.include?("up") || request.path == "/cable"
-    }},
-    hsts: {expires: 31.days, subdomains: false}
+    } },
+    hsts: { expires: 31.days, subdomains: false }
   }
 
   # Log to STDOUT by default
