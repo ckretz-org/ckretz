@@ -169,12 +169,12 @@ jobs:
         name: FluxCD write target image tag
         uses: mikefarah/yq@master
         with:
-          cmd: yq --output-format=yaml -i '.spec.values.apps.accounts.tag = "${{ github.sha }}"' ./apps/spexops.yaml
+          cmd: yq --output-format=yaml -i '.spec.values.apps.ckretz.tag = "${{ github.sha }}"' ./apps/ckretz.yaml
       -
-        name: FluxCD debug ./apps/spexops.yaml
+        name: FluxCD debug ./apps/ckretz.yaml
         uses: mikefarah/yq@master
         with:
-          cmd: cat ./apps/spexops.yaml
+          cmd: cat ./apps/ckretz.yaml
       -
         name: Commit files
         run: |
@@ -187,5 +187,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: "main"
-          repository: spexops/spexops-flux-production
+          repository: 'ckretz-org/ckretz-helm-production'
           ssh: true
