@@ -150,3 +150,42 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
+
+  ###### DEPLOY
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build_container]
+    steps:
+      -
+        name: FluxCD Checkout
+        uses: actions/checkout@v4
+        with:
+          repository: 'ckretz-org/ckretz-helm-production'
+          ref: 'main'
+          ssh-key:  ${{ secrets.FLUX_SSH_DEPLOY_KEY }}
+          # Relative path under $GITHUB_WORKSPACE to place the repository
+          path: ''
+      -
+        name: FluxCD write target image tag
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq --output-format=yaml -i '.spec.values.apps.accounts.tag = "${{ github.sha }}"' ./apps/spexops.yaml
+      -
+        name: FluxCD debug ./apps/spexops.yaml
+        uses: mikefarah/yq@master
+        with:
+          cmd: cat ./apps/spexops.yaml
+      -
+        name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Deploy at $(date +'%Y-%m-%dT%H:%M:%S')"
+      -
+        name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "master"
+          repository: spexops/spexops-flux-production
+          ssh: true
