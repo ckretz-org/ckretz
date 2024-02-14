@@ -62,7 +62,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "rswag-specs"
   gem "rubycritic", require: false
-  gem "rubocop", "~> 1.59", require: false
+  gem "rubocop", "~> 1.60", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rails-omakase", require: false
   gem "rubocop-performance", require: false
