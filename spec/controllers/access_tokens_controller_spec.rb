@@ -22,6 +22,9 @@ RSpec.describe AccessTokensController, type: :request do
     it do
       get access_tokens_path
       expect(response.status).to eql(200)
+    end
+    it do
+      get access_tokens_path
       expect(response.body).to include(access_token.name)
     end
   end
