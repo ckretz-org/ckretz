@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/open-feature/ruby-sdk-contrib.git
+  revision: d4f8c987191748ad0c5d6ffd46530107d1b2029d
+  glob: providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec
+  specs:
+    openfeature-flagd-provider (0.0.1)
+      grpc (~> 1.50)
+      openfeature-sdk (~> 0.3)
+
+GIT
   remote: https://github.com/sbiastoch/rls_rails.git
   revision: 53ec3891e02b065772933fdf0fc6fce311a07abe
   branch: master
@@ -192,6 +201,32 @@ GEM
     formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (3.25.3)
+    google-protobuf (3.25.3-aarch64-linux)
+    google-protobuf (3.25.3-arm64-darwin)
+    google-protobuf (3.25.3-x86-linux)
+    google-protobuf (3.25.3-x86_64-darwin)
+    google-protobuf (3.25.3-x86_64-linux)
+    googleapis-common-protos-types (1.14.0)
+      google-protobuf (~> 3.18)
+    grpc (1.63.0)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.63.0-aarch64-linux)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.63.0-arm64-darwin)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.63.0-x86-linux)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.63.0-x86_64-darwin)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.63.0-x86_64-linux)
+      google-protobuf (~> 3.25)
+      googleapis-common-protos-types (~> 1.0)
     guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -315,6 +350,7 @@ GEM
     omniauth-rails_csrf_protection (1.0.2)
       actionpack (>= 4.2)
       omniauth (~> 2.0)
+    openfeature-sdk (0.3.1)
     parallel (1.24.0)
     parser (3.3.1.0)
       ast (~> 2.4.1)
@@ -628,6 +664,8 @@ DEPENDENCIES
   omniauth-github (~> 2.0.0)
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
+  openfeature-flagd-provider!
+  openfeature-sdk
   pg (~> 1.5.6)
   propshaft
   puma (~> 6)

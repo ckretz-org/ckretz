@@ -57,6 +57,9 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "dry-struct"
 
+gem 'openfeature-sdk'
+gem 'openfeature-flagd-provider', github: 'open-feature/ruby-sdk-contrib', glob: 'providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec'
+
 group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "debug", platforms: %i[mri mingw x64_mingw]
