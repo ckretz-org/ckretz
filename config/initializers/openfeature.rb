@@ -1,8 +1,6 @@
-require 'open_feature/sdk'
-require 'json' # For JSON.dump
+require "open_feature/sdk"
+require "json"
 
-# API Initialization and configuration
-#
 OpenFeature::SDK.configure do |config|
   client = OpenFeature::FlagD::Provider.build_client do |client|
     client.host = ENV.fetch("FLAGD_HOST", "localhost")
