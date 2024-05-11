@@ -1,8 +1,16 @@
 
-<% if FeatureFlagging.fetch_boolean_flag(key: "google-signin") %>
-<%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-<% end %>
+<div class="p-6 mx-auto bg-info rounded-xl bg-gray-100 shadow-md flex items-center space-x-4">
+  <h1 class="font-bold text-xl">Welcome</h1>
 
-<% if Rails.env.development? || Rails.env.test? %>
-  <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-<% end %>
+  <div>
+    <% if FeatureFlagging.fetch_boolean_flag(key: "google-signin") %>
+      <%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <% end %>
+  </div>
+
+  <div>
+    <% if Rails.env.development? || Rails.env.test? %>
+      <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <% end %>
+  </div>
+</div>
