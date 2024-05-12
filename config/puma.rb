@@ -35,6 +35,8 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 plugin :tmp_restart
 
 on_worker_boot do
+  # This is necessary to work-around the GRPC ISSUE:
+  # grpc cannot be used before and after forking unless the GRPC_ENABLE_FORK_SUPPORT env etc ...
   OpenFeature::SDK.configure do |config|
     client = OpenFeature::FlagD::Provider.build_client do |client|
       client.host = ENV.fetch("FLAGD_HOST", "localhost")
