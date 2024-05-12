@@ -57,7 +57,7 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "dry-struct"
 
-gem "openfeature-sdk"
+gem "openfeature-sdk", require: "open_feature/sdk"
 # https://github.com/open-feature/ruby-sdk-contrib/tree/main/providers/openfeature-flagd-provider
 gem "openfeature-flagd-provider", github: "open-feature/ruby-sdk-contrib", glob: "providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec"
 
@@ -103,4 +103,5 @@ group :test do
   gem "webmock"
   gem "rspec-parameterized", ">= 1.0.0"
   gem "spring-commands-rspec"
+  gem "test-prof", "~> 1.0"
 end

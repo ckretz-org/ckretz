@@ -11,11 +11,30 @@ max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
 min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
 threads min_threads_count, max_threads_count
 
+def setup_open_feature
+  # This is necessary to work-around the GRPC ISSUE:
+  # grpc cannot be used before and after forking unless the GRPC_ENABLE_FORK_SUPPORT env etc ...
+  OpenFeature::SDK.configure do |config|
+    client = OpenFeature::FlagD::Provider.build_client do |client|
+      client.host = ENV.fetch("FLAGD_HOST", "localhost")
+      client.port = ENV.fetch("FLAGD_PORT", "8013")
+      client.tls = ENV.fetch("FLAGD_TLS", "false") == "true"
+    end
+    config.set_provider(client)
+  end
+
+end
+
 # Specifies that the worker count should equal the number of processors in production.
 if ENV["RAILS_ENV"] == "production"
   require "concurrent-ruby"
   worker_count = Integer(ENV.fetch("WEB_CONCURRENCY") { Concurrent.physical_processor_count })
   workers worker_count if worker_count > 1
+  on_worker_boot do
+    setup_open_feature
+  end
+else
+  setup_open_feature
 end
 
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
@@ -33,16 +52,3 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
-
-on_worker_boot do
-  # This is necessary to work-around the GRPC ISSUE:
-  # grpc cannot be used before and after forking unless the GRPC_ENABLE_FORK_SUPPORT env etc ...
-  OpenFeature::SDK.configure do |config|
-    client = OpenFeature::FlagD::Provider.build_client do |client|
-      client.host = ENV.fetch("FLAGD_HOST", "localhost")
-      client.port = ENV.fetch("FLAGD_PORT", "8013")
-      client.tls = ENV.fetch("FLAGD_TLS", "false") == "true"
-    end
-    config.set_provider(client)
-  end
-end
