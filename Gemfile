@@ -58,7 +58,7 @@ gem "omniauth-rails_csrf_protection"
 gem "dry-struct"
 
 gem "openfeature-sdk"
-#https://github.com/open-feature/ruby-sdk-contrib/tree/main/providers/openfeature-flagd-provider
+# https://github.com/open-feature/ruby-sdk-contrib/tree/main/providers/openfeature-flagd-provider
 gem "openfeature-flagd-provider", github: "open-feature/ruby-sdk-contrib", glob: "providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec"
 
 group :development, :test do
