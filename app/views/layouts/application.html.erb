@@ -14,10 +14,11 @@
     <link rel="apple-touch-icon" href="/icon.png" sizes="512x512">
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-zinc-100 dark:bg-zinc-600">
     <main class="container mx-auto px-5 flex flex-col items-center justify-center h-screen bg-zinc-100 dark:bg-zinc-600">
       <%= yield %>
     </main>
