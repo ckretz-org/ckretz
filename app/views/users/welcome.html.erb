@@ -1,16 +1,19 @@
+<h1 class="text-3xl font-bold text-center text-zinc-800 dark:text-zinc-200 mb-8">Welcome to CKRetz</h1>
+<h2 class="text-2xl font-semibold text-center text-zinc-800 dark:text-zinc-200 mb-8">
+   An opensource operator for <%= link_to("external-secrets", "https://external-secrets.io/latest/", target: "_blank") %>
+</h2>
+<div class="bg-white text-center  p-8 rounded-lg shadow-lg">
+  <h2 class="text-xl font-bold text-center mb-4">Login</h2>
+  <% if FeatureFlagging.fetch_boolean_flag(key: "google-signin") %>
+    <%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 hover:bg-blue-900 text-white inline-block font-medium cursor-pointer" %>
+  <% end %>
+  <% if Rails.env.development? || Rails.env.test? %>
+    <div class="mt-6">
+    <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  <% end %>
+</div>
 
-<div class="p-6 mx-auto bg-info rounded-xl bg-gray-100 shadow-md flex items-center space-x-4">
-  <h1 class="font-bold text-xl">Welcome</h1>
-
-  <div>
-    <% if FeatureFlagging.fetch_boolean_flag(key: "google-signin") %>
-      <%= button_to I18n.t('login_with_google'), "/auth/google_oauth2", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    <% end %>
-  </div>
-
-  <div>
-    <% if Rails.env.development? || Rails.env.test? %>
-      <%= button_to I18n.t('login_with_developer'), "/auth/developer", method: :post, data: {turbo: false}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-    <% end %>
-  </div>
+<div class="mt-6">
+  <%= render partial: "shared/footer_open_source" %>
 </div>
