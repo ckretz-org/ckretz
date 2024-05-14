@@ -22,7 +22,6 @@ def setup_open_feature
     end
     config.set_provider(client)
   end
-
 end
 
 # Specifies that the worker count should equal the number of processors in production.
