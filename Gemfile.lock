@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/open-feature/ruby-sdk-contrib.git
-  revision: d4f8c987191748ad0c5d6ffd46530107d1b2029d
+  revision: 6b63b49a42f3349e105613d1c209b9b44c2add5e
   glob: providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec
   specs:
     openfeature-flagd-provider (0.0.1)
