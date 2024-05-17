@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "public"
   def welcome
     session[:current_user_id] = nil
   end

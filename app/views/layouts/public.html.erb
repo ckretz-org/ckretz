@@ -19,11 +19,8 @@
   </head>
 
   <body class="bg-zinc-100 dark:bg-zinc-600">
-    <main class="flex flex-row">
-      <%= render partial: "shared/left_menu" %>
-      <div class="container my-8">
-        <%= yield %>
-      </div>
+    <main class="container mx-auto px-5 flex flex-col items-center justify-center h-screen bg-zinc-100 dark:bg-zinc-600">
+      <%= yield %>
     </main>
   </body>
 </html>

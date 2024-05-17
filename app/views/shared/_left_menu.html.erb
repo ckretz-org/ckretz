@@ -1,0 +1,14 @@
+<div class="flex h-screen bg-zinc-100 dark:bg-zinc-600">
+  <div class="bg-white dark:bg-zinc-700 shadow">
+    <div class="p-4">
+      <h2 class="text-2xl font-semibold text-zinc-600 dark:text-zinc-100">CKRETZ</h2>
+    </div>
+    <nav class="p-2">
+      <%= link_to "Access Tokens", access_tokens_path,
+                  class: "block my-2 py-2 px-4 text-zinc-800 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800 bg-zinc-50 dark:bg-zinc-700" %>
+      <%= link_to "Secrets", secrets_path,
+                  class: "block my-2 py-2 px-4 text-zinc-800 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-800 bg-zinc-50 dark:bg-zinc-700" %>
+    </nav>
+  </div>
+  <div class="flex-1 p-8 bg-zinc-100 dark:bg-zinc-600"></div>
+</div>

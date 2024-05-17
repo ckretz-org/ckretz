@@ -1,7 +1,7 @@
-<div id="<%= dom_id access_token %>">
+<div id="<%= dom_id access_token %>" class="flex flex-row justify-between">
   <p class="inline text-gray-500 lg:text-2xl dark:text-gray-400"><%= access_token.name %></p>
   <% if action_name != "show" %>
-    <%= link_to "Show this access token", access_token, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this access token", access_token, class: "rounded-lg but py-3 px-5 bg-gray-200 hover:bg-gray-300 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>
