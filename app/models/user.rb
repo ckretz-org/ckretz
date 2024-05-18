@@ -8,4 +8,9 @@ class User < ApplicationRecord
   after_commit do
     ActiveSupport::Notifications.instrument("created.user", { user: self })
   end
+
+  def chatbot_jwt_token
+    JWT.encode({ user_id: id }, ENV.fetch("SHARED_JWT_SECRET", "ckretz_secret"), "HS256")
+  end
+
 end

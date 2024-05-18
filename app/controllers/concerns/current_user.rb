@@ -7,6 +7,7 @@ module CurrentUser
 
       user = User.find_by_id(session[:current_user_id])
       RLS.set_tenant user
+      @current_user = user
       user
     end
   end

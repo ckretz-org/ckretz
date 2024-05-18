@@ -1,0 +1,25 @@
+<% if @current_user && FeatureFlagging.fetch_boolean_flag(key: "chatbot", default: false, user: current_user) %>
+<style>
+    #outer_div
+    {
+        background-color: antiquewhite;
+        height: 500px;
+        width: 500px;
+        right: 50px;
+        bottom: 50px;
+        position: absolute;
+    }
+    #inner_iframe
+    {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+</style>
+<h1>Chatbot</h1>
+<div id="outer_div">
+  <iframe
+    id="inner_iframe"
+    src="<%= ENV.fetch("CHATBOT_URL", "http://localhost:8501") %>/?embed=true&token=<%= current_user.chatbot_jwt_token %>"></iframe>
+</div>
+<% end %>
