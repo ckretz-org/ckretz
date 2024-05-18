@@ -15,7 +15,7 @@ def setup_open_feature
   # This is necessary to work-around the GRPC ISSUE:
   # grpc cannot be used before and after forking unless the GRPC_ENABLE_FORK_SUPPORT env etc ...
   OpenFeature::SDK.configure do |config|
-    client = OpenFeature::FlagD::Provider.build_client do |client|
+    client = OpenFeature::Flagd::Provider.build_client do |client|
       client.host = ENV.fetch("FLAGD_HOST", "localhost")
       client.port = ENV.fetch("FLAGD_PORT", "8013")
       client.tls = ENV.fetch("FLAGD_TLS", "false") == "true"
