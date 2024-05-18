@@ -23,4 +23,10 @@ RSpec.describe User do
       expect(ActiveSupport::Notifications).to have_received(:instrument)
     end
   end
+  describe 'chatbot_jwt_token' do
+    let!(:user) { build(:user) }
+    it 'encodes a JWT token' do
+      expect(user.chatbot_jwt_token).to include("eyJhbGciOiJIUzI1NiJ9")
+    end
+  end
 end
