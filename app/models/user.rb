@@ -12,5 +12,4 @@ class User < ApplicationRecord
   def chatbot_jwt_token
     JWT.encode({ user_id: id }, ENV.fetch("SHARED_JWT_SECRET", "ckretz_secret"), "HS256")
   end
-
 end
