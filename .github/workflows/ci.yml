@@ -169,7 +169,7 @@ jobs:
         name: FluxCD write target image tag
         uses: mikefarah/yq@master
         with:
-          cmd: yq --output-format=yaml -i '.spec.values.apps.ckretz.tag = "${{ github.sha }}"' ./apps/ckretz.yaml
+          cmd: yq --output-format=yaml -i '.spec.values.apps.app.tag = "${{ github.sha }}"' ./apps/ckretz.yaml
       -
         name: FluxCD debug ./apps/ckretz.yaml
         uses: mikefarah/yq@master
