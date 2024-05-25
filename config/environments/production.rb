@@ -70,7 +70,7 @@ Rails.application.configure do
       if defined? OpenTelemetry::Trace.current_span.name
         operation = OpenTelemetry::Trace.current_span.name
       else
-        operation = 'undefined'
+        operation = "undefined"
       end
 
       "#{time}, #{severity}: #{msg} - trace_id=#{trace_id} - span_id=#{span_id} - operation=#{operation}\n"
