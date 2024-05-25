@@ -57,10 +57,26 @@ Rails.application.configure do
     hsts: { expires: 31.days, subdomains: false }
   }
 
-  # Log to STDOUT by default
-  config.logger = ActiveSupport::Logger.new(STDOUT)
-    .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
-    .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  if  ENV.fetch("LOGGER", "standard") == "standard"
+    # Log to STDOUT by default
+    config.logger = ActiveSupport::Logger.new(STDOUT)
+                                         .tap  { |logger| logger.formatter = ::Logger::Formatter.new }
+                                         .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
+  elsif  ENV.fetch("LOGGER", "standard") == "open_telemetry"
+    logger = ::Logger.new(STDOUT)
+    logger.formatter = proc do |severity, time, progname, msg|
+      span_id = OpenTelemetry::Trace.current_span.context.hex_span_id
+      trace_id = OpenTelemetry::Trace.current_span.context.hex_trace_id
+      if defined? OpenTelemetry::Trace.current_span.name
+        operation = OpenTelemetry::Trace.current_span.name
+      else
+        operation = 'undefined'
+      end
+
+      "#{time}, #{severity}: #{msg} - trace_id=#{trace_id} - span_id=#{span_id} - operation=#{operation}\n"
+    end
+    config.logger = logger
+  end
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]

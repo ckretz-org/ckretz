@@ -62,6 +62,10 @@ gem "openfeature-sdk", require: "open_feature/sdk"
 # gem "openfeature-flagd-provider", github: "open-feature/ruby-sdk-contrib", glob: "providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec"
 gem "openfeature-flagd-provider", "~> 0.1.0", require: "openfeature/flagd/provider"
 
+gem "opentelemetry-sdk"
+gem "opentelemetry-instrumentation-rails"
+gem "opentelemetry-exporter-otlp"
+# gem " rails_semantic_logger "
 
 group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
