@@ -93,6 +93,6 @@ Rails.application.configure do
 
       "#{time}, #{severity}: #{msg} - trace_id=#{trace_id} - span_id=#{span_id} - operation=#{operation}\n"
     end
+    config.logger = logger
   end
-  config.logger = logger
 end
