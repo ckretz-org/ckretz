@@ -26,9 +26,10 @@ class SecretsController < ApplicationController
 
     respond_to do |format|
       if @secret.save
-        format.html { redirect_to secret_url(@secret), notice: "Secret was successfully created." }
+        format.html { redirect_to :secrets, notice: "Secret was successfully created." }
         format.json { render :show, status: :created, location: @secret }
       else
+        format.turbo_stream
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @secret.errors, status: :unprocessable_entity }
       end
