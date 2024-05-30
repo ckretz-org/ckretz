@@ -1,5 +1,4 @@
 class Secret < ApplicationRecord
-  encrypts :name, deterministic: true
   encrypts :value, deterministic: false
 
   validates :name, presence: { strict: false }
@@ -8,6 +7,9 @@ class Secret < ApplicationRecord
   after_create_commit { broadcast_prepend_to "secrets" }
   after_update_commit { broadcast_replace_to "secrets" }
   after_destroy_commit { broadcast_remove_to "secrets" }
+
+  include PgSearch::Model
+  pg_search_scope :search, against: [:name], using: { tsearch: { prefix: true } }
 
   belongs_to :user, counter_cache: true, optional: false
 end

@@ -69,6 +69,9 @@ gem "opentelemetry-instrumentation-rails"
 gem "opentelemetry-exporter-otlp"
 # gem " rails_semantic_logger "
 
+gem "pagy"
+gem "pg_search"
+
 group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "debug", platforms: %i[mri mingw x64_mingw]

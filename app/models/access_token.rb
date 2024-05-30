@@ -3,6 +3,8 @@ class AccessToken < ApplicationRecord
   validates :name, presence: { strict: true }
   validates :token, presence: { strict: false }
 
+  encrypts :token, deterministic: true
+
   before_validation do
     self.token = SecureRandom.hex(13)
   end
