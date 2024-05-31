@@ -13,5 +13,4 @@ class User < ApplicationRecord
     JWT.encode({ user_id: id }, ENV.fetch("SHARED_JWT_SECRET", "ckretz_secret"), "HS256")
   end
   self.implicit_order_column = "created_at"
-
 end

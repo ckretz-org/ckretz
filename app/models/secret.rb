@@ -9,7 +9,7 @@ class Secret < ApplicationRecord
   after_destroy_commit { broadcast_remove_to "secrets" }
 
   include PgSearch::Model
-  pg_search_scope :search, against: [:name], using: { tsearch: { prefix: true } }
+  pg_search_scope :search, against: [ :name ], using: { tsearch: { prefix: true } }
 
   self.implicit_order_column = "created_at"
 
