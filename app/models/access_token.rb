@@ -12,4 +12,6 @@ class AccessToken < ApplicationRecord
   after_commit do
     ActiveSupport::Notifications.instrument("created.access_token", { access_token: self })
   end
+  self.implicit_order_column = "created_at"
+
 end

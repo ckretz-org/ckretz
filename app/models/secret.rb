@@ -11,5 +11,8 @@ class Secret < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search, against: [:name], using: { tsearch: { prefix: true } }
 
+  self.implicit_order_column = "created_at"
+
+  validates :name, uniqueness: { scope: :user_id }
   belongs_to :user, counter_cache: true, optional: false
 end
