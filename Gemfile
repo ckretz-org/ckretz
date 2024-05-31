@@ -89,6 +89,7 @@ group :development, :test do
   gem "standard"
   gem "bundler-audit", require: false
   gem "brakeman", require: false
+  gem "database_consistency", require: false
 end
 
 group :development do
