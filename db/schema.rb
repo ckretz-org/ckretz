@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_08_041620) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_31_063544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_041620) do
     t.index ["name"], name: "index_access_tokens_on_name"
     t.index ["token"], name: "index_access_tokens_on_token"
     t.index ["user_id", "token"], name: "index_access_tokens_on_user_id_and_token"
-    t.index ["user_id"], name: "index_access_tokens_on_user_id"
   end
 
   create_table "secrets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -35,7 +34,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_041620) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_secrets_on_name"
     t.index ["user_id", "name"], name: "index_secrets_on_user_id_and_name", unique: true
-    t.index ["user_id"], name: "index_secrets_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -47,4 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_08_041620) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "access_tokens", "users"
+  add_foreign_key "secrets", "users"
 end
