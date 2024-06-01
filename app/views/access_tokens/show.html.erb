@@ -1,7 +1,9 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div class="mx-auto md:w-2/3 w-full flex" data-controller="access_tokens">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <input class="hidden" data-access_tokens-target="token" class="" value="<%= @access_token.token %>">
+      <button data-action="click->access_tokens#copyToClipboard" class="bg-blue-500 text-white p-2 rounded-lg">Copy To Clipboard</button>
     <% end %>
 
     <%= render @access_token %>
