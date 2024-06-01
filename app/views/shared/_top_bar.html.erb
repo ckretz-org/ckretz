@@ -1,0 +1,22 @@
+<nav class="bg-zinc-300 dark:bg-zinc-800 text-white p-4 flex justify-between items-center">
+  <div class="p-4">
+    <h2 class="text-2xl font-semibold text-zinc-600 dark:text-zinc-100">CKRETZ</h2>
+  </div>
+  <div class="flex items-center">
+    <div id="user-options-dropdown-button" class="relative mr-4">
+      <button class="flex items-center focus:outline-none">
+        <img src="https://placehold.co/30x30" alt="User" class="h-8 w-8 rounded-full" />
+        <span class="ml-2"><%= current_user.email %></span>
+      </button>
+      <div id="user-options-dropdown-options" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg hidden">
+        <%= link_to "Access Tokens", access_tokens_path, class: "block my-2 py-2 px-4 text-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800" %>
+        <%= link_to "Dark/Light mode", "#",
+                    onclick: " document.querySelector('html').classList.toggle('dark'); ",
+                    class: "block my-2 py-2 px-4 text-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800" %>
+
+
+        <%= link_to "Logout", logout_path, class: "block my-2 py-2 px-4 text-zinc-800 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800" %>
+      </div>
+    </div>
+  </div>
+</nav>

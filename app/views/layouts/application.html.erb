@@ -19,6 +19,7 @@
   </head>
 
   <body class="bg-zinc-100 dark:bg-zinc-600">
+    <%= render partial: "shared/top_bar", locals: {current_user: @current_user} %>
     <main class="flex flex-row">
       <%= render partial: "shared/left_menu" %>
       <div class="container my-8">
