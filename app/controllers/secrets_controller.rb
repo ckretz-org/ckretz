@@ -11,7 +11,7 @@ class SecretsController < ApplicationController
   end
 
   def sort_column
-    %w[name created_at].include?(params[:sort]) ? params[:sort] : "name"
+    %w[name created_at].include?(params[:sort]) ? params[:sort] : "created_at"
   end
 
   def sort_direction
@@ -37,10 +37,11 @@ class SecretsController < ApplicationController
 
     respond_to do |format|
       if @secret.save
-        format.html { redirect_to :secrets, notice: "Secret was successfully created." }
+        format.turbo_stream { render :create_success }
+        format.html { redirect_to :secrets, notice: "Created successfully." }
         format.json { render :show, status: :created, location: @secret }
       else
-        format.turbo_stream
+        format.turbo_stream { render :create_failure }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @secret.errors, status: :unprocessable_entity }
       end
