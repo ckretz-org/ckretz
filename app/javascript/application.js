@@ -12,6 +12,16 @@ document.addEventListener("turbo:load", function() {
         const darkMode = document.querySelector('html').classList.toggle('dark');
         localStorage.setItem('darkMode', darkMode);
     }
-
 });
+
+Turbo.setConfirmMethod((message, element) => {
+    let dialog = document.querySelector('#turbo-confirm');
+    dialog.querySelector("p").textContent = message;
+    dialog.showModal();
+    return new Promise((resolve) => {
+        dialog.addEventListener('close', (event) => {
+            resolve(dialog.returnValue === 'confirm');
+        }, { once: true });
+    });
+})
 

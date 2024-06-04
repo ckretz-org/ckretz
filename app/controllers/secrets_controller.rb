@@ -66,6 +66,7 @@ class SecretsController < ApplicationController
     @secret.destroy!
 
     respond_to do |format|
+      format.turbo_stream
       format.html { redirect_to secrets_url, notice: "Secret was successfully destroyed." }
       format.json { head :no_content }
     end
