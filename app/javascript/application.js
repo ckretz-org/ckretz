@@ -4,14 +4,15 @@ import "controllers"
 
 document.addEventListener("turbo:load", function() {
     const userDropdown = document.querySelector('#user-options-dropdown-button');
+    if (userDropdown == null){return;}
     userDropdown.addEventListener('click', function() {
         document.querySelector('#user-options-dropdown-options').classList.toggle('hidden');
     });
-    function toggleDarkMode() {
-        console.log("toggleDarkMode");
-        const darkMode = document.querySelector('html').classList.toggle('dark');
-        localStorage.setItem('darkMode', darkMode);
-    }
+    // function toggleDarkMode() {
+    //     console.log("toggleDarkMode");
+    //     const darkMode = document.querySelector('html').classList.toggle('dark');
+    //     localStorage.setItem('darkMode', darkMode);
+    // }
 });
 
 Turbo.setConfirmMethod((message, element) => {
