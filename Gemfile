@@ -119,3 +119,5 @@ group :test do
   gem "spring-commands-rspec"
   gem "test-prof", "~> 1.0"
 end
+
+gem "solid_queue", "~> 0.3.2"

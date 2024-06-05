@@ -64,4 +64,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.active_job.verbose_enqueue_logs = true
+  config.active_job.queue_adapter = :solid_queue
+  config.active_job.queue_name_prefix = "ckretz_test"
 end
