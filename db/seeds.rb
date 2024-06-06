@@ -8,13 +8,16 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-user = User.create(email: "user_1@domain.com")
+RLS.disable!
 
+SecretSubscriber
+
+user_1 = User.find_or_create_by(email: "joker@gotham.com")
 100.times do |i|
-  Secret.new(name: "A_#{i}", value:  SecureRandom.hex, user: user).save!
+  Secret.new(name: "#{Faker::DcComics.villain}-#{Random.rand(10000)}", value:  SecureRandom.hex, user: user_1).save!
 end
-user = User.create(email: "user_2@domain.com")
 
+user_2 = User.find_or_create_by(email: "batman@gothan.com")
 100.times do |i|
-  Secret.new(name: "B_#{i}", value:  SecureRandom.hex, user: user).save!
+  Secret.new(name: "#{Faker::DcComics.hero}-#{Random.rand(10000)}", value:  SecureRandom.hex, user: user_2).save!
 end

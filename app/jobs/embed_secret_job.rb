@@ -2,7 +2,10 @@ class EmbedSecretJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    Rails.logger.info("EmbedSecretJob: #{args}")
+    unless FeatureFlagging.fetch_boolean_flag(key: "embed-secrets")
+      Rails.logger.warn("EmbedSecretJob: #{args.first[:id]} - FeatureFlagging Embed secrets is disabled.")
+      return if Rails.env.production?
+    end
     secret = RLS.disable_for_block do
       Secret.find(args.first[:id])
     end

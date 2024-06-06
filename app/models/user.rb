@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :access_tokens, counter_cache: true, dependent: :destroy
 
   after_create_commit do
-    ActiveSupport::Notifications.instrument("created.user", { user: User.first })
+    ActiveSupport::Notifications.instrument("created.user", { user: self })
   end
 
   def chatbot_jwt_token
