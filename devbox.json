@@ -5,9 +5,12 @@
       "version":   "latest",
       "platforms": ["aarch64-linux"]
     },
-    "redis":                         "latest",
-    "postgresql16Packages.pgvector": "latest",
-    "postgresql_16":                 "latest"
+    "redis":         "latest",
+    "postgresql_16":{
+      "version": "latest"
+    },
+    "go-task":       "latest",
+    "ruby":          "3.3.1"
   },
   "shell": {
     "init_hook": [
@@ -16,6 +19,16 @@
     "scripts": {
       "test": [
         "echo \"Error: no test specified\" && exit 1"
+      ],
+      "install_pg_vector": [
+        "echo 'Installing pg_vector extension'",
+        "cd /tmp",
+        "git clone --branch v0.7.1 https://github.com/pgvector/pgvector.git",
+        "cd ./pgvector",
+        "make",
+        "sudo make install",
+        "cd /tmp",
+        "rm -rf /tmp/pgvector"
       ]
     }
   }
