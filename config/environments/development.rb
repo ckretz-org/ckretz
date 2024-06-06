@@ -83,11 +83,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name: ENV.fetch("MAILTRAP_USERNAME"),
-    password: ENV.fetch("MAILTRAP_PASSWORD"),
-    address: ENV.fetch("MAILTRAP_ADDRESS"),
-    host: ENV.fetch("MAILTRAP_HOST"),
-    port: ENV.fetch("MAILTRAP_PORT"),
+    user_name: ENV.fetch("MAILTRAP_USERNAME", ""),
+    password: ENV.fetch("MAILTRAP_PASSWORD", ""),
+    address: ENV.fetch("MAILTRAP_ADDRESS", ""),
+    host: ENV.fetch("MAILTRAP_HOST", ""),
+    port: ENV.fetch("MAILTRAP_PORT", ""),
     authentication: :login
   }
 
@@ -108,5 +108,7 @@ Rails.application.configure do
       "#{time}, #{severity}: #{msg} - trace_id=#{trace_id} - span_id=#{span_id} - operation=#{operation}\n"
     end
     config.logger = logger
+  else
+    config.logger = ::Logger.new(STDOUT)
   end
 end
