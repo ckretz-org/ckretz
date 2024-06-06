@@ -92,6 +92,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "brakeman", require: false
   gem "database_consistency", require: false
+  gem "faker"
 end
 
 group :development do
@@ -108,7 +109,6 @@ group :test do
   gem "rspec-rails"
   gem "faraday-retry"
   gem "factory_bot_rails"
-  gem "faker"
   gem "simplecov"
   gem "simplecov-console"
   gem "simplecov-csv"
