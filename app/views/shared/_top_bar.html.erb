@@ -4,7 +4,7 @@
   </div>
   <div class="flex items-center">
     <div id="user-options-dropdown-button" class="relative mr-4">
-      <button class="flex items-center focus:outline-none">
+      <button data-action="click->top_bar#toggleDropdown" class="flex items-center focus:outline-none">
         <img src="https://placehold.co/30x30" alt="User" class="h-8 w-8 rounded-full" />
         <span class="ml-2"><%= current_user.email %></span>
       </button>
