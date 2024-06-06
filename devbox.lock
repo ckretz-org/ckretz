@@ -1,0 +1,239 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "glibcLocales@latest": {
+      "last_modified": "2024-05-22T06:18:38Z",
+      "resolved": "github:NixOS/nixpkgs/3f316d2a50699a78afe5e77ca486ad553169061e#glibcLocales",
+      "source": "devbox-search",
+      "version": "2.39-52",
+      "systems": {
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xm7q0x6634qj1hklx7blbg8ms8qzayn8-glibc-locales-2.39-52",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xm7q0x6634qj1hklx7blbg8ms8qzayn8-glibc-locales-2.39-52"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hmy0ml9nw48c6znk3vn692m1pvk31k54-glibc-locales-2.39-52",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/hmy0ml9nw48c6znk3vn692m1pvk31k54-glibc-locales-2.39-52"
+        }
+      }
+    },
+    "postgresql16Packages.pgvector@latest": {
+      "last_modified": "2024-05-22T06:18:38Z",
+      "resolved": "github:NixOS/nixpkgs/3f316d2a50699a78afe5e77ca486ad553169061e#postgresql16Packages.pgvector",
+      "source": "devbox-search",
+      "version": "0.6.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1b7a7n6l1jb9gyb3pdvd281fsrbi521r-pgvector-0.6.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1b7a7n6l1jb9gyb3pdvd281fsrbi521r-pgvector-0.6.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/lc3qi8f364zh9jm984pnx37w338rclph-pgvector-0.6.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/lc3qi8f364zh9jm984pnx37w338rclph-pgvector-0.6.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/v1r1h2psc48hpyp5nsj6fbpj8b8dmp1f-pgvector-0.6.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/v1r1h2psc48hpyp5nsj6fbpj8b8dmp1f-pgvector-0.6.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ji6my031zs7jm4wnzzcqz35216b9la5i-pgvector-0.6.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ji6my031zs7jm4wnzzcqz35216b9la5i-pgvector-0.6.2"
+        }
+      }
+    },
+    "postgresql_16@latest": {
+      "last_modified": "2024-05-26T09:30:02Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/e2dd4e18cc1c7314e24154331bae07df76eb582f#postgresql_16",
+      "source": "devbox-search",
+      "version": "16.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/shqdbl97jlz56nzd21dbcindfk7rk8i6-postgresql-16.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/0nmpgsgkyqyg028mxx7p1g57gjlvrd3r-postgresql-16.3-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/qy0j8xgzdq5i892y0q6dw4sxbnxkn5vp-postgresql-16.3-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/xdr6864slj8bijic7r5463xm72ihh3x0-postgresql-16.3-lib"
+            }
+          ],
+          "store_path": "/nix/store/shqdbl97jlz56nzd21dbcindfk7rk8i6-postgresql-16.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/s6zc2dzqil3c1s51f7lvkwlfvscra26z-postgresql-16.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/gfrbm5kmbcv4ig28jwnr2bvky4ybhw3g-postgresql-16.3-man",
+              "default": true
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/8bnd87sbvk8a852sabavbb2f1zx0zr6q-postgresql-16.3-debug"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/1zif6fb2bvj28w4ny2ynrm709cl0m9ap-postgresql-16.3-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/c6hc12757m2c8zrvx8rsk0dxc1hzrla3-postgresql-16.3-lib"
+            }
+          ],
+          "store_path": "/nix/store/s6zc2dzqil3c1s51f7lvkwlfvscra26z-postgresql-16.3"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pcf220104xny8w0m9vzc7ss4yqrpg0rw-postgresql-16.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/q1sdkji0ifbzzn7qkpqyvb2zligg70fd-postgresql-16.3-man",
+              "default": true
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/8cxz5k066bxmq0qkpy25m30fl30l1b94-postgresql-16.3-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/623g1qrqmrzk9k3bqallws9lclpg8an4-postgresql-16.3-lib"
+            }
+          ],
+          "store_path": "/nix/store/pcf220104xny8w0m9vzc7ss4yqrpg0rw-postgresql-16.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yz718sizpgsnq2y8gfv8bba8l8r4494l-postgresql-16.3",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/z5ki9bilxgszrdkj09pb0ak0gzbn0ngw-postgresql-16.3-man",
+              "default": true
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/vf3cvgigxvx4xasn0kxxx8v60rqbs3jg-postgresql-16.3-lib"
+            },
+            {
+              "name": "debug",
+              "path": "/nix/store/5jszhg3c7igi3d0qyg5w0mbp67lrwrb1-postgresql-16.3-debug"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/mn0sffpgdaf8qkfavs4l22d8yf284rqr-postgresql-16.3-doc"
+            }
+          ],
+          "store_path": "/nix/store/yz718sizpgsnq2y8gfv8bba8l8r4494l-postgresql-16.3"
+        }
+      }
+    },
+    "redis@latest": {
+      "last_modified": "2024-05-22T06:18:38Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/3f316d2a50699a78afe5e77ca486ad553169061e#redis",
+      "source": "devbox-search",
+      "version": "7.2.4",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/f1hmasfrq0s1yag27kmdwv97cjxv85rm-redis-7.2.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/f1hmasfrq0s1yag27kmdwv97cjxv85rm-redis-7.2.4"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5ay0vkvk8l2n8fgxnmxdci1y1ldafnx8-redis-7.2.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5ay0vkvk8l2n8fgxnmxdci1y1ldafnx8-redis-7.2.4"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5l40xjgzqsd56dx5zfwr2v6sfpk12lkl-redis-7.2.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5l40xjgzqsd56dx5zfwr2v6sfpk12lkl-redis-7.2.4"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xlvzg81dgimxfjxpxwr2w3q1ca3l5lwa-redis-7.2.4",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/xlvzg81dgimxfjxpxwr2w3q1ca3l5lwa-redis-7.2.4"
+        }
+      }
+    }
+  }
+}
