@@ -1,0 +1,9 @@
+development:
+  dispatchers:
+    - polling_interval: 2
+      batch_size: 50
+      concurrency_maintenance_interval: 300
+  workers:
+    - queues: "*"
+      threads: 1
+      polling_interval: 2

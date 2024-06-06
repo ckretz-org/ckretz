@@ -121,3 +121,7 @@ group :test do
 end
 
 gem "solid_queue", "~> 0.3.2"
+
+gem "mission_control-jobs"
+
+gem "neighbor"

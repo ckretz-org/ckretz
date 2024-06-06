@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+user = User.create(email: "user_1@domain.com")
+
+100.times do |i|
+  Secret.new(name: "A_#{i}", value:  SecureRandom.hex, user: user).save!
+end
+user = User.create(email: "user_2@domain.com")
+
+100.times do |i|
+  Secret.new(name: "B_#{i}", value:  SecureRandom.hex, user: user).save!
+end
