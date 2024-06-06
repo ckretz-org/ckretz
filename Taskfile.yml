@@ -1,0 +1,42 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  DATABASE_URL: "postgresql://ckretz:secret@localhost:5432/ckretz_development"
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  solid_queue:
+    dotenv:
+      - .bin/env
+    env:
+      RLS_DISABLE: "true"
+      PGGSSENCMODE: "disable"
+    cmds:
+      - bundle exec rails solid_queue:start
+
+  psql_user_create:
+    cmds:
+      - |
+        psql -U $(whoami) postgres -c "
+          create user ckretz with password 'secret';
+        "
+
+  psql_user_permissions:
+    cmds:
+      - |
+        psql -U $(whoami) ckretz_development -c "
+          GRANT all privileges on DATABASE ckretz_development to ckretz;
+          GRANT ALL privileges on all TABLES in SCHEMA public to ckretz;
+          GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ckretz;
+          GRANT ALL ON SCHEMA public TO ckretz;
+          GRANT USAGE ON SCHEMA public TO ckretz;
+          GRANT CONNECT ON DATABASE ckretz_development to ckretz;
+          GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ckretz;
+        "
