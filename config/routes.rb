@@ -15,10 +15,9 @@ Rails.application.routes.draw do
   get "api/app/info" => "info#index"
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "users#welcome"
 
   get "/welcome", to: "users#welcome"
-  get "/", to: "users#welcome"
   get "/logout", to: "users#logout"
 
   get "auth/:provider/callback", to: "omniauth#callback"
