@@ -1,5 +1,6 @@
 class OmniauthController < ApplicationController
-  # skip_before_action :verify_authenticity_token, only: [ :index ]
+  skip_before_action :verify_authenticity_token, only: [:callback]
+
   def callback
     provider_name = params[:provider].to_sym
     provider_callback = available_providers[provider_name]
