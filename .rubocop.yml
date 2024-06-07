@@ -9,5 +9,6 @@ inherit_gem: { rubocop-rails-omakase: rubocop.yml }
 
 require:
   - rubocop-performance
+  - rubocop-rspec
   - rubocop-rails
 
