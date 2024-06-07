@@ -61,7 +61,7 @@ jobs:
 
     services:
       postgres:
-        image: adepanges/postgresql-action@v1
+        image: ankane/pgvector:v0.5.1
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
