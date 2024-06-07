@@ -11,6 +11,10 @@ tasks:
     cmds:
       - echo "{{.GREETING}}"
     silent: true
+  rubocop:
+    cmds:
+      - echo "rubocop ..."
+      - bundle exec rubocop
 
   solid_queue:
     dotenv:

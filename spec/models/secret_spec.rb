@@ -28,5 +28,4 @@ RSpec.describe Secret, type: :model do
       expect(ActiveSupport::Notifications).to have_received(:instrument).with("updated.secret", { secret: secret })
     end
   end
-
 end

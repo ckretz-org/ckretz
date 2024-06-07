@@ -9,12 +9,12 @@ class EmbedSecretJob < ApplicationJob
     secret = RLS.disable_for_block do
       Secret.find(args.first[:id])
     end
-    uri = URI(ENV.fetch('OLLAMA_EMBEDDING_URL','http://localhost:11434/api/embeddings'))
+    uri = URI(ENV.fetch("OLLAMA_EMBEDDING_URL", "http://localhost:11434/api/embeddings"))
     body = {
-        model: ENV.fetch('OLLAMA_EMBEDDING_MODEL','nomic-embed-text') ,
+      model: ENV.fetch("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text"),
         prompt: secret.name
       }
-    headers = { 'Content-Type': 'application/json' }
+    headers = { 'Content-Type': "application/json" }
     response = Net::HTTP.post(uri, body.to_json, headers)
     raise "Failed to embed secret: #{response.body}" unless response.code == "200"
 
