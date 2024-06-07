@@ -16,6 +16,10 @@ tasks:
       - echo "rubocop ..."
       - bundle exec rubocop
 
+  tailwind:
+    cmds:
+      - bundle exec rails tailwindcss:watch
+
   solid_queue:
     dotenv:
       - .bin/env

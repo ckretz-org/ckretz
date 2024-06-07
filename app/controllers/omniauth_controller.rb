@@ -6,6 +6,10 @@ class OmniauthController < ApplicationController
     send provider_callback
   end
 
+  def failure
+    redirect_to welcome_path, alert: params["message"]
+  end
+
   private
   def available_providers
     { google_oauth2: :google_oauth2, developer: :developer }
