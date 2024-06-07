@@ -42,3 +42,4 @@ config/database.yml
 .bin/
 coverage
 #.devbox/
+.run/
