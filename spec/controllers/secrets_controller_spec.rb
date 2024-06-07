@@ -13,7 +13,7 @@ RSpec.describe SecretsController, type: :request do
     allow(current_user).to receive(:secrets).and_return(current_user_secrets)
     allow(current_user_secrets).to receive(:new).and_return(secret_1)
     allow(current_user_secrets).to receive(:find).with(secret_1.id).and_return(secret_1)
-    allow(current_user_secrets).to receive(:reorder).with("name"=>"asc").and_return(current_user_secrets)
+    allow(current_user_secrets).to receive(:reorder).with("created_at"=>"asc").and_return(current_user_secrets)
     allow(current_user_secrets).to receive(:offset).with(0).and_return(current_user_secrets)
     allow(current_user_secrets).to receive(:limit).and_return([ secret_1 ])
     allow(current_user_secrets).to receive(:count).with(:all).and_return(1)

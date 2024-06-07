@@ -11,7 +11,7 @@ RSpec.describe 'Omniauth', type: :feature do
     fill_in 'name', with: 'Developer Name'
     fill_in 'email', with: user.email
     click_on 'Sign In'
-    expect(page).to have_content("Access tokens")
+    expect(page).to have_content("Secrets")
     visit logout_path
     expect(page).to have_content("Login with Google\nLogin with Developer")
   end

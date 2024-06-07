@@ -11,10 +11,12 @@ class Secret < ApplicationRecord
     ActiveSupport::Notifications.instrument("created.secret", { secret: self })
   end
   after_update_commit do
-    broadcast_replace_to "secrets"
-    ActiveSupport::Notifications.instrument("updated.secret", { secret: self })
+     broadcast_replace_to "secrets"
+     ActiveSupport::Notifications.instrument("updated.secret", { secret: self })
   end
-  after_destroy_commit { broadcast_remove_to "secrets" }
+  after_destroy_commit do
+    broadcast_remove_to "secrets"
+  end
 
   include PgSearch::Model
   pg_search_scope :search, against: [ :name ], using: { tsearch: { prefix: true } }

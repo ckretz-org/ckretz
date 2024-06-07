@@ -1,8 +1,8 @@
 require "rails_helper"
 
-RSpec.describe 'List access tokens', type: :feature do
+RSpec.describe 'List secrets', type: :feature do
   let(:user) { create(:user) }
-  let!(:access_token) { create(:access_token, user: user) }
+  let!(:secret) { create(:secret, user: user) }
   before :each do
     OmniAuth.config.test_mode = false
     visit welcome_path
@@ -13,6 +13,6 @@ RSpec.describe 'List access tokens', type: :feature do
     click_on 'Sign In'
   end
   scenario 'valid inputs' do
-    expect(page).to have_content(access_token.name)
+    expect(page).to have_content(secret.name)
   end
 end
