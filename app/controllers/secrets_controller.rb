@@ -22,9 +22,14 @@ class SecretsController < ApplicationController
   def show
   end
 
+  def secret_value_field
+    render layout: false
+  end
+
   # GET /secrets/new
   def new
     @secret = current_user.secrets.new
+    @secret.secret_values.build
   end
 
   # GET /secrets/1/edit
@@ -80,6 +85,6 @@ class SecretsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def secret_params
-      params.require(:secret).permit(:name, :value)
+      params.require(:secret).permit(:name, secret_values_attributes: [:id, :name, :value])
     end
 end
