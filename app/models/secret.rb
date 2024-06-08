@@ -1,10 +1,7 @@
 class Secret < ApplicationRecord
-  encrypts :value, deterministic: false
-
   has_neighbors :embedding
 
   validates :name, presence: { strict: false }
-  validates :value, presence: { strict: false }
 
   after_create_commit do
     broadcast_prepend_to "secrets"
@@ -25,4 +22,5 @@ class Secret < ApplicationRecord
 
   validates :name, uniqueness: { scope: :user_id }
   belongs_to :user, counter_cache: true, optional: false
+  has_many :secret_values, dependent: :destroy
 end

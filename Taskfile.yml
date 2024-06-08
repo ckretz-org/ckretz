@@ -16,6 +16,12 @@ tasks:
       - echo "rubocop ..."
       - bundle exec rubocop
 
+  console:
+    dotenv:
+      - .bin/env
+    cmds:
+      - bundle exec rails console
+
   tailwind:
     cmds:
       - bundle exec rails tailwindcss:watch
