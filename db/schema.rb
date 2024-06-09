@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_08_095906) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_09_162302) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "pgcrypto"
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_08_095906) do
     t.uuid "secret_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_secret_values_on_name"
+    t.index ["name", "secret_id"], name: "index_secret_values_name_secret_id", unique: true
     t.index ["secret_id"], name: "index_secret_values_on_secret_id"
   end
 
@@ -163,6 +163,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_08_095906) do
   end
 
   add_foreign_key "access_tokens", "users"
+  add_foreign_key "secret_values", "secrets"
   add_foreign_key "secrets", "users"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
