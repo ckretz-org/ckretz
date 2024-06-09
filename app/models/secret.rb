@@ -25,4 +25,7 @@ class Secret < ApplicationRecord
   has_many :secret_values, dependent: :destroy
   accepts_nested_attributes_for :secret_values, allow_destroy: true
 
+  def secret_values_hash
+    secret_values.map { |secret_value| [secret_value.name, secret_value.value] }.to_h
+  end
 end

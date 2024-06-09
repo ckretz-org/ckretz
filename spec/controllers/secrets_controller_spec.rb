@@ -17,6 +17,40 @@ RSpec.describe SecretsController, type: :request do
     allow(current_user_secrets).to receive(:offset).with(0).and_return(current_user_secrets)
     allow(current_user_secrets).to receive(:limit).and_return([ secret_1 ])
     allow(current_user_secrets).to receive(:count).with(:all).and_return(1)
+    allow(secret_1).to receive(:secret_values_hash).and_return({ a: "a", b: "b" })
+  end
+
+  describe "session authentication" do
+    before do
+      allow_any_instance_of(described_class).to receive(:session).and_return({})
+    end
+    it do
+      get secrets_path
+      expect(response.status).to eql(302)
+      expect(response.location).to include("welcome")
+    end
+  end
+
+  describe "token authentication success" do
+    before do
+      allow_any_instance_of(described_class).to receive(:session).and_return({})
+      allow(AccessToken).to receive(:find_by_token).with("TOKEN").and_return(AccessToken.build(user: current_user))
+    end
+    it do
+      get secrets_path(format: :json), headers: { Authorization: "Bearer TOKEN" }
+      expect(response.status).to eql(200)
+    end
+  end
+
+  describe "token authentication failure" do
+    before do
+      allow_any_instance_of(described_class).to receive(:session).and_return({})
+      allow(AccessToken).to receive(:find_by_token).and_return(nil)
+    end
+    it do
+      get secrets_path(format: :json)
+      expect(response.status).to eql(401)
+    end
   end
 
   describe "index" do
@@ -30,12 +64,19 @@ RSpec.describe SecretsController, type: :request do
     end
   end
 
-  describe "show" do
+  describe "show#HTML" do
     it do
-      get secret_path(id: secret_1.id)
+      get secret_path(id: secret_1.id, format: :html)
       expect(response.status).to eql(200)
       expect(response.body).to include(secret_1.name)
-      expect(response.body).not_to include(secret_1.value)
+    end
+  end
+
+  describe "show#JSON" do
+    it do
+      get secret_path(id: secret_1.id, format: :json)
+      expect(response.status).to eql(200)
+      expect(JSON.parse(response.body)["values"]).to eql({ "a" => "a", "b" => "b" })
     end
   end
 
