@@ -23,7 +23,6 @@ class SecretsController < ApplicationController
   end
 
   def secret_value_field
-    render layout: false
   end
 
   # GET /secrets/new

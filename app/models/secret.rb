@@ -23,6 +23,6 @@ class Secret < ApplicationRecord
   validates :name, uniqueness: { scope: :user_id }
   belongs_to :user, counter_cache: true, optional: false
   has_many :secret_values, dependent: :destroy
-  accepts_nested_attributes_for :secret_values, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :secret_values, allow_destroy: true
 
 end
