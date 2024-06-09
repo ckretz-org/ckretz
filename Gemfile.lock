@@ -91,7 +91,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    base64 (0.2.0)
+    base64 (0.1.1)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     binding_of_caller (1.0.1)
@@ -420,7 +420,7 @@ GEM
     opentelemetry-semantic_conventions (1.10.0)
       opentelemetry-api (~> 1.0)
     pagy (8.4.4)
-    parallel (1.24.0)
+    parallel (1.25.1)
     parser (3.3.2.0)
       ast (~> 2.4.1)
       racc
@@ -528,8 +528,8 @@ GEM
       io-console (~> 0.5)
     requestjs-rails (0.0.11)
       railties (>= 6.1.0)
-    rexml (3.2.8)
-      strscan (>= 3.0.9)
+    rexml (3.2.9)
+      strscan
     rouge (4.2.1)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
@@ -568,15 +568,16 @@ GEM
       json-schema (>= 2.2, < 5.0)
       railties (>= 3.1, < 7.2)
       rspec-core (>= 2.14)
-    rubocop (1.64.1)
+    rubocop (1.56.4)
+      base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
-      parser (>= 3.3.0.2)
+      parser (>= 3.2.2.3)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
+      rubocop-ast (>= 1.28.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.31.3)
@@ -585,17 +586,17 @@ GEM
       rubocop (~> 1.41)
     rubocop-factory_bot (2.25.1)
       rubocop (~> 1.41)
-    rubocop-minitest (0.35.0)
-      rubocop (>= 1.61, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-minitest (0.34.5)
+      rubocop (>= 1.39, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-performance (1.21.0)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.25.0)
+    rubocop-rails (2.23.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
-      rubocop-ast (>= 1.31.1, < 2.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-rails-omakase (1.0.0)
       rubocop
       rubocop-minitest
@@ -662,18 +663,21 @@ GEM
     spring (4.2.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    standard (1.35.0.1)
+    standard (1.31.2)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
-      rubocop (~> 1.62)
+      rubocop (~> 1.56.4)
       standard-custom (~> 1.0.0)
-      standard-performance (~> 1.3)
+      standard-performance (~> 1.2)
     standard-custom (1.0.2)
       lint_roller (~> 1.0)
       rubocop (~> 1.50)
     standard-performance (1.4.0)
       lint_roller (~> 1.1)
       rubocop-performance (~> 1.21.0)
+    standard-rails (1.0.2)
+      lint_roller (~> 1.0)
+      rubocop-rails (~> 2.23.1)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
@@ -793,7 +797,7 @@ DEPENDENCIES
   rspec-parameterized (>= 1.0.0)
   rspec-rails
   rswag-specs
-  rubocop (~> 1.64)
+  rubocop
   rubocop-performance
   rubocop-rails
   rubocop-rails-omakase
@@ -807,7 +811,8 @@ DEPENDENCIES
   solid_queue (~> 0.3.2)
   spring
   spring-commands-rspec
-  standard
+  standard (~> 1.31.0)
+  standard-rails
   stimulus-rails
   tailwindcss-rails
   test-prof (~> 1.0)

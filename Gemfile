@@ -79,7 +79,7 @@ group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "rswag-specs"
   gem "rubycritic", require: false
-  gem "rubocop", "~> 1.64", require: false
+  gem "rubocop", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rails-omakase", require: false
   gem "rubocop-performance", require: false
@@ -89,7 +89,8 @@ group :development, :test do
   gem "guard-rspec", require: false
   gem "guard-rubycritic", require: false
   gem "guard-process"
-  gem "standard"
+  gem "standard", "~> 1.31.0"
+  gem "standard-rails"
   gem "bundler-audit", require: false
   gem "brakeman", require: false
   gem "database_consistency", require: false
@@ -127,4 +128,4 @@ gem "mission_control-jobs"
 
 gem "neighbor"
 
-gem 'requestjs-rails'
+gem "requestjs-rails"

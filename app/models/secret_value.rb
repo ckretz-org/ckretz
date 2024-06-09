@@ -6,5 +6,4 @@ class SecretValue < ApplicationRecord
   validates :name, uniqueness: { scope: :secret_id }
   encrypts :name, deterministic: true
   encrypts :value, deterministic: false
-
 end
