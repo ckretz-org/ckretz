@@ -1,5 +1,5 @@
 class SecretValuesController < ApplicationController
-  before_action :set_secret_value, only: %i[ destroy ]
+  before_action :set_secret_value, only: %i[]
   include CurrentUser
 
   # GET /secret_values/new
@@ -16,14 +16,15 @@ class SecretValuesController < ApplicationController
 
   # DELETE /secret_values/1 or /secret_values/1.json
   def destroy
-    @secret_value.destroy!
-
+    @secret_value = current_user.secret_values.find(params[:id])
+    @secret_value.destroy
+  rescue ActiveRecord::RecordNotFound
+    @secret_value = params[:id]
+  ensure
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.remove(@secret_value)
       }
-      # format.html { redirect_to secret_values_url, notice: "Secret value was successfully destroyed." }
-      # format.json { head :no_content }
     end
   end
 
@@ -31,7 +32,7 @@ class SecretValuesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_secret_value
-    @secret_value = SecretValue.find(params[:id])
+    @secret_value = current_user.secret_values.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
