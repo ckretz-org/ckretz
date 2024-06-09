@@ -1,5 +1,4 @@
 class SecretValuesController < ApplicationController
-  before_action :set_secret_value, only: %i[]
   include CurrentUser
 
   # GET /secret_values/new
@@ -29,13 +28,6 @@ class SecretValuesController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_secret_value
-    @secret_value = current_user.secret_values.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def secret_value_params
     params.fetch(:secret_value, {})
   end
