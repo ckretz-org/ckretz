@@ -5,9 +5,9 @@ class SecretValuesController < ApplicationController
   # GET /secret_values/new
   def new
     respond_to do |format|
-      format.html {
-        @secret_value = SecretValue.new
-      }
+      # format.html {
+      #   @secret_value = SecretValue.new
+      # }
       format.turbo_stream {
         render turbo_stream: turbo_stream.append("secret_values", partial: "secret_values/secret_value", locals: { secret_value: SecretValue.new })
       }
