@@ -43,3 +43,5 @@ config/database.yml
 coverage
 #.devbox/
 .run/
+http/
+

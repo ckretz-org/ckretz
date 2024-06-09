@@ -111,4 +111,5 @@ Rails.application.configure do
   else
     config.logger = ::Logger.new(STDOUT)
   end
+  config.hosts << ENV.fetch("API_DOMAIN_NAME", "localhost:3000")
 end
