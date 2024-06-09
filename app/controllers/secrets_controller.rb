@@ -22,9 +22,6 @@ class SecretsController < ApplicationController
   def show
   end
 
-  def secret_value_field
-  end
-
   # GET /secrets/new
   def new
     @secret = current_user.secrets.new

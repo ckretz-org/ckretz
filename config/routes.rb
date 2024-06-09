@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
-  resources :secret_values
   mount MissionControl::Jobs::Engine, at: "/jobs"
 
-  resources :secrets do
-    collection do
-      get "secret_value_field"
-    end
-  end
+  resources :secret_values, only: [:new, :destroy]
+  resources :secrets
   resources :access_tokens, except: [ :update ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

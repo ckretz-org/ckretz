@@ -4,6 +4,7 @@ class User < ApplicationRecord
   validates :email, format: URI::MailTo::EMAIL_REGEXP, presence: { strict: true }, uniqueness: true
   has_many :secrets, counter_cache: true, dependent: :destroy
   has_many :access_tokens, counter_cache: true, dependent: :destroy
+  has_many :secret_values, through: :secrets
 
   after_create_commit do
     ActiveSupport::Notifications.instrument("created.user", { user: self })
