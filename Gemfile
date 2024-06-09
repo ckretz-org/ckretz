@@ -89,8 +89,6 @@ group :development, :test do
   gem "guard-rspec", require: false
   gem "guard-rubycritic", require: false
   gem "guard-process"
-  gem "standard", "~> 1.31.0"
-  gem "standard-rails"
   gem "bundler-audit", require: false
   gem "brakeman", require: false
   gem "database_consistency", require: false
