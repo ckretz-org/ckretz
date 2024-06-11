@@ -8,7 +8,7 @@ class SecretValuesController < ApplicationController
       #   @secret_value = SecretValue.new
       # }
       format.turbo_stream {
-        render turbo_stream: turbo_stream.append("secret_values", partial: "secret_values/secret_value", locals: { secret_value: SecretValue.new })
+        render turbo_stream: turbo_stream.append("secret_values", partial: "secret_values/secret_value", locals: { secret_value: SecretValue.new, action: :edit })
       }
     end
   end
