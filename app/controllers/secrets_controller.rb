@@ -26,6 +26,9 @@ class SecretsController < ApplicationController
   def new
     @secret = current_user.secrets.new
     @secret.secret_values.build
+    respond_to do |format|
+      format.turbo_stream { render :new }
+    end
   end
 
   # GET /secrets/1/edit

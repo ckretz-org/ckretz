@@ -1,7 +1,7 @@
 class Secret < ApplicationRecord
   has_neighbors :embedding
 
-  validates :name, presence: { strict: false }
+  validates :name, presence: { strict: false }, format: { without: /\s/, message: "must contain no spaces" }
 
   after_create_commit do
     broadcast_prepend_to "secrets"
