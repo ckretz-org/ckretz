@@ -120,7 +120,7 @@ group :test do
   gem "test-prof", "~> 1.0"
 end
 
-gem "solid_queue", "~> 0.3.2"
+gem "solid_queue", "~> 0.3.3"
 
 gem "mission_control-jobs"
 
