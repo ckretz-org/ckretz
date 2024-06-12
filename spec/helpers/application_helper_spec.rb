@@ -37,7 +37,6 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
   describe '#turbo_id_for' do
-
     let(:object) { build(:secret) }
     context 'when id_or_hash is false' do
       it 'returns the object id' do
