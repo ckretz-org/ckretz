@@ -26,9 +26,4 @@ class SecretValuesController < ApplicationController
       }
     end
   end
-
-  private
-  def secret_value_params
-    params.fetch(:secret_value, {})
-  end
 end

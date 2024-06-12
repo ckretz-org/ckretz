@@ -16,6 +16,20 @@ tasks:
       - echo "rubocop ..."
       - bundle exec rubocop
 
+  rspec:
+    env:
+      COVERAGE: 1
+      RAILS_ENV: test
+      ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: "deterministickeyaaaaaaaaaaaaaaaa"
+      ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: "keyderivationsaltbbbbbbbbbbbbbbb"
+      ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: "primarykeycccccccddddddddddddddd"
+    cmds:
+      - bundle exec rspec --profile --format d;
+
+  simplecov:
+    cmds:
+      - open coverage/index.html
+
   console:
     dotenv:
       - .bin/env

@@ -36,4 +36,29 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+  describe '#turbo_id_for' do
+
+    let(:object) { build(:secret) }
+    context 'when id_or_hash is false' do
+      it 'returns the object id' do
+        expect(helper.turbo_id_for(object: object, id_or_hash: false)).to eq(object.hash)
+      end
+    end
+
+    context 'when object is persisted' do
+      before { allow(object).to receive(:persisted?).and_return(true) }
+
+      it 'returns the object id' do
+        expect(helper.turbo_id_for(object: object)).to eq("secret_#{object.id}")
+      end
+    end
+
+    context 'when object is not persisted' do
+      before { allow(object).to receive(:persisted?).and_return(false) }
+
+      it 'returns the object hash' do
+        expect(helper.turbo_id_for(object: object)).to eq(object.hash)
+      end
+    end
+  end
 end
