@@ -18,3 +18,7 @@
 /*    display: block;*/
 /*    border: 1px solid blue;*/
 /*}*/
+
+dialog {
+    top: 150px;
+}

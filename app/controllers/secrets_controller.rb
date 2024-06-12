@@ -7,7 +7,7 @@ class SecretsController < ApplicationController
   def index
     @secrets = current_user.secrets
     @secrets = @secrets.search(params[:query]) if params[:query].present?
-    @pagy, @secrets = pagy(@secrets.reorder(sort_column => sort_direction), items: params.fetch(:count, 5))
+    @pagy, @secrets = pagy(@secrets.reorder(sort_column => sort_direction), items: params.fetch(:count, 10))
   end
 
   def sort_column
@@ -15,7 +15,7 @@ class SecretsController < ApplicationController
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 
   # GET /secrets/1 or /secrets/1.json
@@ -56,9 +56,11 @@ class SecretsController < ApplicationController
   def update
     respond_to do |format|
       if @secret.update(secret_params)
+        format.turbo_stream { render :create_success }
         format.html { redirect_to secret_url(@secret), notice: "Successfully updated." }
         format.json { render :show, status: :ok, location: @secret }
       else
+        format.turbo_stream { render :create_failure }
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @secret.errors, status: :unprocessable_entity }
       end
