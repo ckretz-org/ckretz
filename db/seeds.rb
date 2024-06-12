@@ -14,10 +14,10 @@ SecretSubscriber
 
 user_1 = User.find_or_create_by(email: "joker@gotham.com")
 100.times do |i|
-  Secret.new(name: "#{Faker::DcComics.villain}-#{Random.rand(10000)}", user: user_1).save!
+  Secret.new(name: "#{Faker::DcComics.villain.sub(" ", "_")}-#{Random.rand(10000)}", user: user_1).save!
 end
 
 user_2 = User.find_or_create_by(email: "batman@gothan.com")
 100.times do |i|
-  Secret.new(name: "#{Faker::DcComics.hero}-#{Random.rand(10000)}", user: user_2).save!
+  Secret.new(name: "#{Faker::DcComics.hero.sub(" ", "_")}-#{Random.rand(10000)}", user: user_2).save!
 end
