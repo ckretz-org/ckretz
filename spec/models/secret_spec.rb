@@ -30,7 +30,7 @@ RSpec.describe Secret, type: :model do
   end
 
   describe 'secret_values_hash' do
-    let(:secret_values) { [build(:secret_value, name: "a", value: "a"), build(:secret_value, name: "b", value: "b")] }
+    let(:secret_values) { [ build(:secret_value, name: "a", value: "a"), build(:secret_value, name: "b", value: "b") ] }
     let!(:secret) { build(:secret, secret_values: secret_values) }
     it do
       expect(secret.secret_values_hash).to eql({ "a" => "a", "b" => "b" })
