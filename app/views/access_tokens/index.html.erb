@@ -8,7 +8,7 @@
     <%= link_to "New access token", new_access_token_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="access_tokens" class="min-w-full">
-    <%= render @access_tokens %>
+  <div id="access_tokens">
+    <%= render collection: @access_tokens, partial: 'index_item', as: :access_token %>
   </div>
 </div>

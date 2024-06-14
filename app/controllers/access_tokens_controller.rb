@@ -22,7 +22,7 @@ class AccessTokensController < ApplicationController
 
     respond_to do |format|
       if @access_token.save
-        format.html { redirect_to access_token_url(@access_token), notice: "Access token was successfully created, copy this token: #{@access_token.token}" }
+        format.html { redirect_to access_tokens_path, notice: "Access token was successfully created, copy this token: #{@access_token.token}" }
         format.json { render :show, status: :created, location: @access_token }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -20,40 +20,4 @@
 </div>
 
 
-<div id="access_token_k8s_how_to" class="" popover="auto">
-  <div class="bg-white p-4 rounded-lg w-full">
-    <h2 class="text-gray-500 grow text-lg font-bold inline-block">K8S</h2>
-    <pre class="border">
-    <code>
----
-apiVersion: external-secrets.io/v1beta1
-  kind: SecretStore
-metadata:
-  name: ckretz-webhook-backend-1
-spec:
-  provider:
-    webhook:
-      url: "https://<%= ENV.fetch('API_DOMAIN_NAME', 'app.ckretz.com') %>/secrets/{{ .remoteRef.key }}.json"
-    result:
-      jsonPath: "$.values"
-    headers:
-      Content-Type: application/json
-      Authorization: bearer {{ print .auth.token }}
-  secrets:
-    - name: auth
-  secretRef:
-    name: ckretz-webhook-credentials
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ckretz-webhook-credentials
-data:
-  token: <%= @access_token.token %>
-    </code>
-    </pre>
-  </div>
-  <div class="text-center">
-    <button class="text-lg py-2.5 px-5 rounded-lg text-white button bg-blue-600 inline-block font-medium cursor-pointer" onclick="document.querySelector('#access_token_k8s_how_to').hidePopover();">Close</button>
-  </div>
-</div>
+<%= render partial: 'access_token_k8s_snippet', locals: { access_token: @access_token } %>
