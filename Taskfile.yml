@@ -16,6 +16,9 @@ tasks:
       - echo "rubocop ..."
       - bundle exec rubocop
 
+  rswag:
+    cmds:
+      - bundle exec rake rswag:specs:swaggerize
   rspec:
     env:
       COVERAGE: 1

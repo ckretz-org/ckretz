@@ -5,16 +5,18 @@
       "version":   "latest",
       "platforms": ["aarch64-linux"]
     },
-    "redis":         "latest",
-    "postgresql_16":{
+    "redis": "latest",
+    "postgresql_16": {
       "version": "latest"
     },
-    "go-task":       "latest",
-    "ruby":          "3.3.1"
+    "go-task": "latest",
+    "ruby": "3.3.1",
+    "git": "latest"
   },
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null"
+      "echo 'Welcome to devbox!' > /dev/null",
+      "export PS1='📦 devbox> '"
     ],
     "scripts": {
       "test": [

@@ -44,4 +44,5 @@ coverage
 #.devbox/
 .run/
 http/
+swagger/
 
