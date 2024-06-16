@@ -5,7 +5,8 @@
 
   <div class="flex justify-between items-center">
     <h1 class="text-lg font-semibold text-zinc-600 dark:text-zinc-100">Access tokens</h1>
-    <%= link_to "New access token", new_access_token_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to "New", new_access_token_path, data: { turbo_stream: true }, class: "text-center px-5 py-3 rounded-lg text-white inline-block bg-blue-600 hover:bg-blue-800" %>
+
   </div>
 
   <div id="access_tokens">

@@ -1,4 +1,4 @@
-<div id="access_token_k8s_how_to" class="" popover="auto">
+<div id=<%= "access_token_k8s_how_to_#{access_token.id}" %> class="" popover="auto">
   <div class="bg-white p-4 rounded-lg w-full">
     <h2 class="text-gray-500 grow text-lg font-bold inline-block">K8S</h2>
     <pre class="border">
@@ -32,6 +32,6 @@ data:
     </pre>
   </div>
   <div class="text-center">
-    <button class="text-lg py-2.5 px-5 rounded-lg text-white button bg-blue-600 inline-block font-medium cursor-pointer" onclick="document.querySelector('#access_token_k8s_how_to').hidePopover();">Close</button>
+    <button class="text-lg py-2.5 px-5 rounded-lg text-white button bg-blue-600 inline-block font-medium cursor-pointer" onclick="document.querySelector('#access_token_k8s_how_to_<%= access_token.id %>' ).hidePopover();">Close</button>
   </div>
 </div>

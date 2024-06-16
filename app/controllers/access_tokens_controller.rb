@@ -14,6 +14,9 @@ class AccessTokensController < ApplicationController
   # GET /access_tokens/new
   def new
     @access_token = current_user.access_tokens.new
+    respond_to do |format|
+      format.turbo_stream { render :new }
+    end
   end
 
   # POST /access_tokens or /access_tokens.json
