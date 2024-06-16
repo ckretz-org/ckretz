@@ -74,6 +74,9 @@ gem "opentelemetry-exporter-otlp"
 gem "pagy"
 gem "pg_search"
 
+gem "rswag-api"
+gem "rswag-ui"
+
 group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "debug", platforms: %i[mri mingw x64_mingw]
