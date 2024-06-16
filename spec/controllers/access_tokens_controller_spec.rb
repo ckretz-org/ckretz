@@ -39,7 +39,7 @@ RSpec.describe AccessTokensController, type: :request do
 
   describe "new" do
     it do
-      get new_access_token_path
+      get new_access_token_path(format: :turbo_stream)
       expect(response.status).to eql(200)
     end
   end
