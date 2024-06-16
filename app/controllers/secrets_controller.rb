@@ -1,13 +1,12 @@
 class SecretsController < ApplicationController
   include CurrentUser
-  include Pagy::Backend
   before_action :set_secret, only: %i[ show edit update destroy ]
+  include Pagy::Backend
 
   # GET /secrets or /secrets.json
   def index
-    @secrets = current_user.secrets
-    @secrets = @secrets.search(params[:query]) if params[:query].present?
-    @pagy, @secrets = pagy(@secrets.reorder(sort_column => sort_direction), items: params.fetch(:count, 10))
+    secrets = Queries::Secrets::Index.new(current_user.secrets).resolve(query: params[:query])
+    @pagy, @secrets = pagy(secrets.reorder(sort_column => sort_direction), items: params.fetch(:count, 10))
   end
 
   def sort_column

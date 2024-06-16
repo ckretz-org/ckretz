@@ -17,6 +17,8 @@ tasks:
       - bundle exec rubocop
 
   rswag:
+    env:
+      DOMAIN_NAME: "localhost:3000"
     cmds:
       - bundle exec rake rswag:specs:swaggerize
   rspec:
