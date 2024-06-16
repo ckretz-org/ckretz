@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: true
+    t.boolean "active", default: true, null: false
     t.datetime "last_used_at"
     t.index ["name"], name: "index_access_tokens_on_name"
     t.index ["token"], name: "index_access_tokens_on_token"
