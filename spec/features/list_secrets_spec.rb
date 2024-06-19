@@ -1,18 +1,10 @@
 require "rails_helper"
 
 RSpec.describe 'List secrets', type: :feature do
-  let(:user) { create(:user) }
-  let!(:secret) { create(:secret, user: user) }
-  before :each do
-    OmniAuth.config.test_mode = false
-    visit welcome_path
-    expect(page).to have_content("Login with Google\nLogin with Developer")
-    click_button 'Login with Developer'
-    fill_in 'name', with: 'Developer Name'
-    fill_in 'email', with: user.email
-    click_on 'Sign In'
-  end
+  include_context 'current_user'
+  let!(:secret) { create(:secret, user: current_user) }
   scenario 'valid inputs' do
+    visit secrets_path
     expect(page).to have_content(secret.name)
   end
 end

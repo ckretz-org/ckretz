@@ -3,12 +3,12 @@
 module Queries
   class Query
     class << self
-      def query_model
-        name.sub(/::[^:]+$/, "").safe_constantize
-      end
+      # def query_model
+      #   name.sub(/::[^:]+$/, "").safe_constantize
+      # end
     end
 
-    def initialize(relation = self.class.query_model.all)
+    def initialize(relation)
       @relation = relation
     end
   end
