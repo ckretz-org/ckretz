@@ -10,4 +10,3 @@ RSpec.shared_context 'current_user' do
     click_on 'Sign In'
   end
 end
-
