@@ -28,8 +28,8 @@ class AccessTokensController < ApplicationController
         format.html { redirect_to access_tokens_path, notice: "Access token was successfully created, copy this token: #{@access_token.token}" }
         format.json { render :show, status: :created, location: @access_token }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @access_token.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @access_token.errors, status: :unprocessable_content }
       end
     end
   end
