@@ -558,7 +558,7 @@ GEM
     rspec-parameterized-table_syntax (1.0.1)
       binding_of_caller
       rspec-parameterized-core (< 2)
-    rspec-rails (6.1.2)
+    rspec-rails (6.1.3)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       railties (>= 6.1)
