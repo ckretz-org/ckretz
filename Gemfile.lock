@@ -308,7 +308,7 @@ GEM
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    neighbor (0.3.2)
+    neighbor (0.4.0)
       activerecord (>= 6.1)
     nenv (0.3.0)
     net-http (0.4.1)
