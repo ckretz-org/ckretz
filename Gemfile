@@ -64,7 +64,7 @@ gem "dry-struct"
 gem "openfeature-sdk", require: "open_feature/sdk"
 # https://github.com/open-feature/ruby-sdk-contrib/tree/main/providers/openfeature-flagd-provider
 # gem "openfeature-flagd-provider", github: "open-feature/ruby-sdk-contrib", glob: "providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec"
-gem "openfeature-flagd-provider", "~> 0.1.0", require: "openfeature/flagd/provider"
+gem "openfeature-flagd-provider", "~> 0.1.1", require: "openfeature/flagd/provider"
 
 gem "opentelemetry-sdk"
 gem "opentelemetry-instrumentation-rails"
