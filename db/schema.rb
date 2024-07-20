@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
 
   create_table "access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "token", null: false
+    t.string "token", null: false, comment: "sensitive_data=true"
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
 
   create_table "secret_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "value", null: false
+    t.string "value", null: false, comment: "sensitive_data=true"
     t.uuid "secret_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -156,7 +156,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.citext "email", null: false
+    t.citext "email", null: false, comment: "sensitive_data=true"
     t.integer "access_tokens_count", default: 0, null: false
     t.integer "secrets_count", default: 0, null: false
     t.datetime "created_at", null: false

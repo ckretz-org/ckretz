@@ -2,7 +2,7 @@ class CreateSecretValues < ActiveRecord::Migration[7.1]
   def change
     create_table :secret_values, id: :uuid do |t|
       t.string :name, null: false, index: true
-      t.string :value, null: false
+      t.string :value, null: false, comment: 'sensitive_data=true'
 
       t.references :secret, null: false, type: :uuid, index: true
 
