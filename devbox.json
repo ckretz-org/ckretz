@@ -1,9 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.11.0/.schema/devbox.schema.json",
+  "env": {
+    "PGPORT": "5432",
+    "PGHOST": "/tmp/",
+    "REDIS_PORT": "6379",
+    "DATABASE_URL": "postgresql://localhost:5432/ckretz_development"
+  },
   "packages": {
     "glibcLocales": {
       "version":   "latest",
       "platforms": ["aarch64-linux"]
+    },
+    "yq": "latest",
+    "libyaml": {
+      "version": "latest",
+      "outputs": [
+        "out",
+        "dev"
+      ]
     },
     "redis": "latest",
     "postgresql_16": {
@@ -15,12 +29,20 @@
   },
   "shell": {
     "init_hook": [
-      "echo 'Welcome to devbox!' > /dev/null",
-      "export PS1='📦 devbox> '"
+      "echo 'Welcome to CKRetz/DevBox!' > /dev/null",
+      "devbox run copy_pg_conf",
+      "devbox run patch_pg_service",
+      "export PS1='📦 ckretz> '"
     ],
     "scripts": {
       "test": [
         "echo \"Error: no test specified\" && exit 1"
+      ],
+      "copy_pg_conf": [
+        "cp devbox.d/postgresql_16/postgresql.conf  .devbox/virtenv/postgresql_16/data/"
+      ],
+      "patch_pg_service": [
+        "yq --yaml-output --in-place '.processes.postgresql.command = \"pg_ctl start -o \\\"-k /tmp/ -p $PGPORT  \\\"\"' .devbox/virtenv/postgresql_16/process-compose.yaml"
       ],
       "install_pg_vector": [
         "echo 'Installing pg_vector extension'",
