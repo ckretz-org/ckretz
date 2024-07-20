@@ -95,6 +95,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "brakeman", require: false
   gem "database_consistency", require: false
+  gem "active_record_doctor"
   gem "faker"
 end
 

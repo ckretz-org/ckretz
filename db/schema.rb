@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
+  enable_extension "citext"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "vector"
@@ -156,7 +156,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "email", null: false
+    t.citext "email", null: false
     t.integer "access_tokens_count", default: 0, null: false
     t.integer "secrets_count", default: 0, null: false
     t.datetime "created_at", null: false
@@ -164,9 +164,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_105028) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "access_tokens", "users"
-  add_foreign_key "secret_values", "secrets"
-  add_foreign_key "secrets", "users"
+  add_foreign_key "access_tokens", "users", on_delete: :cascade
+  add_foreign_key "secret_values", "secrets", on_delete: :cascade
+  add_foreign_key "secrets", "users", on_delete: :cascade
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade

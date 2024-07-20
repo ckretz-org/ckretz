@@ -45,4 +45,5 @@ coverage
 .run/
 http/
 swagger/
+*.swp
 

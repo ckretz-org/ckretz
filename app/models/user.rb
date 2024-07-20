@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :access_tokens, counter_cache: true, dependent: :destroy
   has_many :secret_values, through: :secrets
 
+  validates :access_tokens_count, presence: true
+  validates :secrets_count, presence: true
+
   after_create_commit do
     ActiveSupport::Notifications.instrument("created.user", { user: self })
   end
