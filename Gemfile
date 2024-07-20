@@ -121,7 +121,7 @@ group :test do
   gem "webmock"
   gem "rspec-parameterized", ">= 1.0.0"
   gem "spring-commands-rspec"
-  gem "test-prof", "~> 1.0"
+  gem "test-prof", "~> 1.3"
 end
 
 gem "solid_queue", "~> 0.3.2"
