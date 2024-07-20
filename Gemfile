@@ -132,4 +132,4 @@ gem "neighbor"
 
 gem "requestjs-rails"
 
-gem 'strong_migrations'
+gem "strong_migrations"
