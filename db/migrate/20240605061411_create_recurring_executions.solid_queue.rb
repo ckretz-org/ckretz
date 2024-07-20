@@ -10,6 +10,8 @@ class CreateRecurringExecutions < ActiveRecord::Migration[7.1]
       t.index [ :task_key, :run_at ], unique: true
     end
 
-    add_foreign_key :solid_queue_recurring_executions, :solid_queue_jobs, column: :job_id, on_delete: :cascade
+    safety_assured do
+      add_foreign_key :solid_queue_recurring_executions, :solid_queue_jobs, column: :job_id, on_delete: :cascade
+    end
   end
 end
