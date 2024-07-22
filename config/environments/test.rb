@@ -66,4 +66,9 @@ Rails.application.configure do
   config.active_job.verbose_enqueue_logs = true
   config.active_job.queue_adapter = :solid_queue
   config.active_job.queue_name_prefix = "ckretz_test"
+
+  config.after_initialize do
+    Prosopite.rails_logger = true
+    Prosopite.raise = true
+  end
 end

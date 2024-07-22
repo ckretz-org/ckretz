@@ -112,4 +112,8 @@ Rails.application.configure do
     config.logger = ::Logger.new(STDOUT)
   end
   config.hosts << ENV.fetch("API_DOMAIN_NAME", "localhost:3000")
+
+  config.after_initialize do
+    Prosopite.rails_logger = true
+  end
 end

@@ -97,6 +97,8 @@ group :development, :test do
   gem "database_consistency", require: false
   gem "active_record_doctor"
   gem "faker"
+  gem "prosopite"
+  gem "pg_query"
 end
 
 group :development do
