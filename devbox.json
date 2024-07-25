@@ -31,8 +31,7 @@
     "init_hook": [
       "echo 'Welcome to CKRetz/DevBox!' > /dev/null",
       "devbox run copy_pg_conf",
-      "devbox run patch_pg_service",
-      "export PS1='📦 ckretz> '"
+      "devbox run patch_pg_service"
     ],
     "scripts": {
       "test": [
