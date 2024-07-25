@@ -26,6 +26,11 @@ module Ckretz
                               request_specs: false
       generate.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+
+    config.active_record.query_log_tags_enabled = true
+
+    ActiveRecord::Tasks::DatabaseTasks.structure_dump_flags = ['--clean', '--if-exists']
+
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
