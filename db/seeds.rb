@@ -13,11 +13,16 @@ RLS.disable!
 SecretSubscriber
 
 user_1 = User.find_or_create_by(email: "joker@gotham.com")
-100.times do |i|
-  Secret.new(name: "#{Faker::DcComics.villain.gsub(" ", "_")}-#{SecureRandom.uuid}", user: user_1).save!
+10.times do |i|
+  secret = Secret.new(name: "#{Faker::DcComics.unique.villain.gsub(" ", "_")}", user: user_1)
+  secret.save!
+  secret.secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid)
+  secret.secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid)
 end
 
 user_2 = User.find_or_create_by(email: "batman@gothan.com")
-100.times do |i|
-  Secret.new(name: "#{Faker::DcComics.hero.gsub(" ", "_")}-#{SecureRandom.uuid}", user: user_2).save!
+10.times do |i|
+  secret = Secret.new(name: "#{Faker::DcComics.unique.hero.gsub(" ", "_")}", user: user_2)
+  secret.save!
+  secret.secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid)
 end
