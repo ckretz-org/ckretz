@@ -25,7 +25,8 @@
     },
     "go-task": "latest",
     "ruby": "3.3.1",
-    "git": "latest"
+    "git": "latest",
+    "pg_hll": "latest"
   },
   "shell": {
     "init_hook": [
@@ -52,6 +53,17 @@
         "sudo make install",
         "cd /tmp",
         "rm -rf /tmp/pgvector"
+      ],
+      "install_pg_hint": [
+        "echo 'Installing pg_hint extension'",
+        "cd /tmp",
+        "wget https://github.com/ossc-db/pg_hint_plan/archive/refs/tags/REL16_1_6_0.tar.gz",
+        "tar xzvf ./REL16_1_6_0.tar.gz",
+        "cd ./pg_hint_plan-REL16_1_6_0",
+        "make",
+        "sudo make install",
+        "cd /tmp",
+        "rm -rf ./pg_hint_plan-REL16_1_6_0"
       ]
     }
   }
