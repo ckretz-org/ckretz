@@ -213,12 +213,6 @@
         }
       }
     },
-    "pg_hll@latest": {
-      "last_modified": "2023-02-24T09:01:09Z",
-      "resolved": "github:NixOS/nixpkgs/7d0ed7f2e5aea07ab22ccb338d27fbe347ed2f11#pg_hll",
-      "source": "devbox-search",
-      "version": "2.17"
-    },
     "postgresql_16@latest": {
       "last_modified": "2024-05-26T09:30:02Z",
       "plugin_version": "0.0.2",

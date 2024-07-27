@@ -25,8 +25,7 @@
     },
     "go-task": "latest",
     "ruby": "3.3.1",
-    "git": "latest",
-    "pg_hll": "latest"
+    "git": "latest"
   },
   "shell": {
     "init_hook": [
