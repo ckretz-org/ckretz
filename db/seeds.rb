@@ -10,19 +10,22 @@
 
 RLS.disable!
 
-SecretSubscriber
+# SecretSubscriber
 
-user_1 = User.find_or_create_by(email: "joker@gotham.com")
-10.times do |i|
-  secret = Secret.new(name: "#{Faker::DcComics.unique.villain.gsub(" ", "_")}", user: user_1)
-  secret.save!
-  secret.secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid)
-  secret.secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid)
+def batch_import(email, faker)
+  user_1 = User.find_or_create_by(email: email)
+  secrets = []
+  secret_values = []
+  10.times do
+    secret = Secret.new(name: "#{Faker::DcComics.unique.send(faker).gsub(" ", "_")}", user: user_1)
+    secrets << secret
+    10.times do
+      secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid, secret: secret)
+    end
+  end
+  Secret.import secrets, validate: true
+  SecretValue.import secret_values, validate: true
 end
 
-user_2 = User.find_or_create_by(email: "batman@gothan.com")
-10.times do |i|
-  secret = Secret.new(name: "#{Faker::DcComics.unique.hero.gsub(" ", "_")}", user: user_2)
-  secret.save!
-  secret.secret_values << SecretValue.new(name: Faker::Alphanumeric.unique.alpha(number: 10), value: SecureRandom.uuid)
-end
+batch_import("joker@gotham.com", :villain)
+batch_import("joker@gotham.com", :hero)

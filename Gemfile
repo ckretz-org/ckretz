@@ -136,3 +136,5 @@ gem "neighbor"
 gem "requestjs-rails"
 
 gem "strong_migrations"
+
+gem "activerecord-import"
