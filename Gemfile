@@ -126,7 +126,7 @@ group :test do
   gem "test-prof", "~> 1.3"
 end
 
-gem "solid_queue", "~> 0.3.2"
+gem "solid_queue", "~> 0.7.1"
 
 gem "mission_control-jobs"
 
