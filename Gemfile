@@ -133,8 +133,6 @@ gem "mission_control-jobs"
 
 gem "neighbor"
 
-gem "requestjs-rails"
-
 gem "strong_migrations"
 
 gem "activerecord-import"
