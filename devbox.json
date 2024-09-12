@@ -4,7 +4,7 @@
     "PGPORT": "5432",
     "PGHOST": "/tmp/",
     "REDIS_PORT": "6379",
-    "DATABASE_URL": "postgresql://localhost:5432/ckretz_development"
+    "DATABASE_URL": "postgresql://localhost:5432"
   },
   "packages": {
     "glibcLocales": {
