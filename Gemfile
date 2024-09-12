@@ -99,7 +99,6 @@ group :development, :test do
   gem "faker"
   gem "prosopite"
   gem "pg_query"
-  gem "rails_best_practices"
 end
 
 group :development do
