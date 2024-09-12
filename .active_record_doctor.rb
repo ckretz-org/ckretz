@@ -18,7 +18,7 @@ ActiveRecordDoctor.configure do
     "ActiveStorage::VariantRecord",
     "ActiveStorage::Blob",
     "ActiveStorage::Attachment",
-    "ActionMailbox::InboundEmail",
+    "ActionMailbox::InboundEmail"
   ]
   global :ignore_tables, [
     "ar_internal_metadata",

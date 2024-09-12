@@ -12,5 +12,3 @@ inherit_gem:
 require:
   - rubocop-performance
   - rubocop-rspec
-  - rubocop-rails
-

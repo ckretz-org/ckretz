@@ -810,7 +810,6 @@ DEPENDENCIES
   rswag-ui
   rubocop
   rubocop-performance
-  rubocop-rails
   rubocop-rails-omakase
   rubocop-rspec
   rubycritic
