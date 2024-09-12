@@ -73,3 +73,13 @@ tasks:
           GRANT CONNECT ON DATABASE ckretz_development to ckretz;
           GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ckretz;
         "
+      - |
+        psql -U $(whoami) queue_development -c "
+          GRANT all privileges on DATABASE queue_development to ckretz;
+          GRANT ALL privileges on all TABLES in SCHEMA public to ckretz;
+          GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ckretz;
+          GRANT ALL ON SCHEMA public TO ckretz;
+          GRANT USAGE ON SCHEMA public TO ckretz;
+          GRANT CONNECT ON DATABASE queue_development to ckretz;
+          GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ckretz;
+        "
