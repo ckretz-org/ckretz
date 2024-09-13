@@ -14,12 +14,14 @@ RSpec.describe AccessToken, type: :model do
     let(:user) { build(:user) }
     let!(:access_token) { build(:access_token, user: user) }
     before do
-      allow(ActiveSupport::Notifications).to receive(:instrument).with("created.access_token", { access_token: access_token })
-      allow(ActiveSupport::Notifications).to receive(:instrument).with("created.user", { user: user })
+      allow(ActiveSupport::Notifications).to receive(:instrument).exactly(3)
       access_token.save!
     end
     it 'sends notification upon creation' do
-      expect(ActiveSupport::Notifications).to have_received(:instrument).twice
+      expect(ActiveSupport::Notifications).to have_received(:instrument)
+                                                .with("start_transaction.active_record", { connection: anything, transaction: anything })
+                                                .with("created.access_token", { access_token: access_token })
+                                                .with("created.user", { user: user })
     end
   end
 end

@@ -1,5 +1,5 @@
 class SlowQuerySubscriber < ActiveSupport::Subscriber
-  SECONDS_THRESHOLD = 0.1
+  SECONDS_THRESHOLD = ENV.fetch("SLOW_QUERY_THRESHOLD", 0.1).to_f
   unless Rails.env.production?
     ActiveSupport::Notifications.subscribe("sql.active_record") do |name, start, finish, _, data|
       duration = finish - start

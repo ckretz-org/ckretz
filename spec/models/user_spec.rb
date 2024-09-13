@@ -16,11 +16,13 @@ RSpec.describe User do
   describe 'creation' do
     let!(:user) { build(:user) }
     before do
-      allow(ActiveSupport::Notifications).to receive(:instrument).with("created.user", { user: user })
+      allow(ActiveSupport::Notifications).to receive(:instrument).twice
       user.save!
     end
     it 'sends notification upon creation' do
       expect(ActiveSupport::Notifications).to have_received(:instrument)
+                                                .with("start_transaction.active_record", { connection: anything, transaction: anything })
+                                                .with("created.user", { user: user })
     end
   end
   describe 'chatbot_jwt_token' do
