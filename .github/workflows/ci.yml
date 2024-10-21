@@ -141,7 +141,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: REGISTRY_IMAGE
+          images: ${{ env.REGISTRY_IMAGE }}
           tags: |
             type=raw,value=${{ github.sha }}
       -
