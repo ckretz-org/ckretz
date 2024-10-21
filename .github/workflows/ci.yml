@@ -139,8 +139,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: tillawy/ckretz
-          tags: |
-            type=raw,value=${{ github.sha }}
+      #          tags: |
+      #            type=raw,value=${{ github.sha }}
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -150,6 +150,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build and push by digest
         id: build_container
         uses: docker/build-push-action@v6
