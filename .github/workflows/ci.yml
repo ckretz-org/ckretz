@@ -132,7 +132,7 @@ jobs:
           tags: |
             type=raw,value=${{ github.sha }}
       -
-        name: Docker buildx
+        name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
         name: Login to Docker Hub
@@ -149,7 +149,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
 
   ###### DEPLOY
   deploy:
