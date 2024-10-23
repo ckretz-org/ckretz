@@ -16,10 +16,52 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"math"
+	"math/rand"
 	"dagger/ckretz/internal/dagger"
 )
 
 type Ckretz struct{}
+
+// Publish the application container after building and testing it on-the-fly
+func (m *Ckretz) Publish(ctx context.Context, source *dagger.Directory) (string, error) {
+	_, err := m.Test(ctx, source)
+	if err != nil {
+		return "", err
+	}
+    return m.Build(ctx, source).
+		Publish(ctx, fmt.Sprintf("ttl.sh/ckretz-arm-dagger-%.0f", math.Floor(rand.Float64()*10000000)))
+}
+
+// Build the application container
+func (m *Ckretz) Build(ctx context.Context, source *dagger.Directory) *dagger.Container {
+ 	return dag.Container().
+ 	WithDirectory("/rails", source).
+ 	WithWorkdir("/rails").
+ 	Directory("/rails").
+ 	DockerBuild()
+	//return m.BuildEnv(source)
+}
+
+// Return the result of running unit tests
+func (m *Ckretz) Test(ctx context.Context, source *dagger.Directory) (string, error) {
+	return m.BuildEnv(source).
+		WithExec([]string{"bundle", "exec", "bin/rubocop"}).
+		Stdout(ctx)
+}
+
+// Build a ready-to-use development environment
+func (m *Ckretz) BuildEnv(source *dagger.Directory) *dagger.Container {
+	rubyCache := dag.CacheVolume("rails-ckretz")
+	return dag.Container().
+		WithDirectory("/rails", source).
+		WithMountedCache("/usr/local/bundle", rubyCache).
+		WithWorkdir("/rails").
+		Directory("/rails").
+		DockerBuild().
+		WithExec([]string{"bundle", "install"})
+}
 
 // Returns a container that echoes whatever string argument is provided
 func (m *Ckretz) ContainerEcho(stringArg string) *dagger.Container {
