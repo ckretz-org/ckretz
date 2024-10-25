@@ -45,4 +45,4 @@ coverage
 http/
 swagger/
 *.swp
-
+database_consistency_*

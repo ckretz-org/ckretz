@@ -31,7 +31,7 @@ func (m *Ckretz) Publish(ctx context.Context, source *dagger.Directory) (string,
 		return "", err
 	}
     return m.Build(ctx, source).
-		Publish(ctx, fmt.Sprintf("ttl.sh/ckretz-arm-dagger-%.0f", math.Floor(rand.Float64()*10000000)))
+		Publish(ctx, fmt.Sprintf("ttl.sh/ckretz-app-arm-dagger-%.0f", math.Floor(rand.Float64()*10000000)))
 }
 
 // Build the application container

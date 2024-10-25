@@ -61,8 +61,10 @@ production:
   primary:
     <<: *default
     database: ckretz_production
+    url: <%= ENV["DATABASE_URL"] %>
   queue:
     <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
     database: queue_production
     migrations_paths: db/queue_migrate
 

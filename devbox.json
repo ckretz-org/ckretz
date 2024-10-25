@@ -4,7 +4,10 @@
     "PGPORT": "5432",
     "PGHOST": "/tmp/",
     "REDIS_PORT": "6379",
-    "DATABASE_URL": "postgresql://localhost:5432"
+    "DATABASE_URL": "postgresql://localhost:5432",
+    "ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY": "aPA5XyALhf75NNnMzaspW7akTfZp0lPY",
+    "ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT" : "xEY0dt6TZcAMg52K7O84wYzkjvbA62Hz",
+    "ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY" :"EGY8WhulUOXixybod7ZWwMIL68R9o5kC"
   },
   "packages": {
     "glibcLocales": {
