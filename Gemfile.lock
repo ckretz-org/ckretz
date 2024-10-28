@@ -292,7 +292,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.7.3)
+    json (2.7.4)
     json-schema (5.0.1)
       addressable (~> 2.8)
     jwt (2.9.3)
@@ -626,7 +626,7 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
-    rubocop-rspec (3.1.0)
+    rubocop-rspec (3.2.0)
       rubocop (~> 1.61)
     ruby-pg-extras (5.4.1)
       pg
