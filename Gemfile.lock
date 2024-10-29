@@ -249,7 +249,7 @@ GEM
     grpc (1.67.0-x86_64-linux)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    guard (2.18.1)
+    guard (2.19.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (>= 1.0.12, < 2.0)
