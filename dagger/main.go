@@ -48,6 +48,8 @@ func (m *Ckretz) Build(ctx context.Context, source *dagger.Directory) *dagger.Co
 func (m *Ckretz) Test(ctx context.Context, source *dagger.Directory) (string, error) {
 	return m.BuildEnv(source).
 		WithExec([]string{"bundle", "exec", "bin/rubocop"}).
+		WithExec([]string{"bundle", "exec", "bundle-audit"}).
+		WithExec([]string{"bundle", "exec", "brakeman"}).
 		Stdout(ctx)
 }
 
