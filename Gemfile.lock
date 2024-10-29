@@ -139,8 +139,9 @@ GEM
     dry-configurable (1.2.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
-    dry-core (1.0.1)
+    dry-core (1.0.2)
       concurrent-ruby (~> 1.0)
+      logger
       zeitwerk (~> 2.6)
     dry-inflector (1.1.0)
     dry-initializer (3.1.1)
@@ -173,8 +174,8 @@ GEM
       tzinfo
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.4.3)
-      factory_bot (~> 6.4)
+    factory_bot_rails (6.4.4)
+      factory_bot (~> 6.5)
       railties (>= 5.0.0)
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
@@ -249,7 +250,7 @@ GEM
     grpc (1.67.0-x86_64-linux)
       google-protobuf (>= 3.25, < 5.0)
       googleapis-common-protos-types (~> 1.0)
-    guard (2.18.1)
+    guard (2.19.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (>= 1.0.12, < 2.0)
@@ -292,7 +293,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.7.3)
+    json (2.7.4)
     json-schema (5.0.1)
       addressable (~> 2.8)
     jwt (2.9.3)
@@ -305,7 +306,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.6.1)
-    loofah (2.23.0)
+    loofah (2.23.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lumberjack (1.2.10)
@@ -342,7 +343,7 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    nio4r (2.7.3)
+    nio4r (2.7.4)
     nokogiri (1.16.7-aarch64-linux)
       racc (~> 1.4)
     nokogiri (1.16.7-arm-linux)
@@ -443,7 +444,7 @@ GEM
       opentelemetry-semantic_conventions
     opentelemetry-semantic_conventions (1.10.1)
       opentelemetry-api (~> 1.0)
-    pagy (9.1.0)
+    pagy (9.1.1)
     parallel (1.26.3)
     parser (3.3.5.0)
       ast (~> 2.4.1)
@@ -608,7 +609,7 @@ GEM
       rubocop-ast (>= 1.32.2, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.32.3)
+    rubocop-ast (1.33.0)
       parser (>= 3.3.1.0)
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
@@ -616,7 +617,7 @@ GEM
     rubocop-performance (1.22.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-rails (2.26.2)
+    rubocop-rails (2.27.0)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.52.0, < 2.0)
@@ -626,7 +627,7 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
-    rubocop-rspec (3.1.0)
+    rubocop-rspec (3.2.0)
       rubocop (~> 1.61)
     ruby-pg-extras (5.4.1)
       pg
