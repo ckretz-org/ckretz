@@ -12,8 +12,8 @@ default: &default
 development:
   primary:
     <<: *default
-    database: ckretz_primary_development
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
+    database: ckretz_primary_development
     migrations_paths: db/migrate_primary
   cache:
     <<: *default
@@ -37,9 +37,9 @@ development:
 test:
   primary:
     <<: *default
-    database: ckretz_primary_test
     host: localhost
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
+    database: ckretz_primary_test
     migrations_paths: db/migrate_primary
   cache:
     <<: *default
@@ -55,20 +55,20 @@ test:
   cable: &cable
     <<: *default
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
-    database: ckretz_cable_development
+    database: ckretz_cable_test
     migrations_paths: db/migrate_cable
     host: localhost
 
 production:
   primary:
     <<: *default
-    database: 'ckretz_primary_production'
     url: <%= ENV["DATABASE_PRIMARY_RW_URL"] %>
+    database: 'ckretz_primary_production'
     migrations_paths: db/migrate_primary
   cache:
     <<: *default
-    url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
     database: 'ckretz_cache_production'
+    url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
     migrations_paths: db/migrate_cache
   queue:
     <<: *default
