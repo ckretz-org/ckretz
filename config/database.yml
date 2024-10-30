@@ -25,7 +25,7 @@ development:
     url: <%= ENV['DATABASE_QUEUE_RW_URL'] %>
     database: ckretz_queue_development
     migrations_paths: db/migrate_queue
-  cable: &cable
+  cable:
     <<: *default
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
     database: ckretz_cable_development
@@ -52,7 +52,7 @@ test:
     database: ckretz_queue_test
     migrations_paths: db/migrate_queue
     host: localhost
-  cable: &cable
+  cable:
     <<: *default
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
     database: ckretz_cable_test
@@ -75,7 +75,7 @@ production:
     url: <%= ENV["DATABASE_QUEUE_RW_URL"] %>
     database: 'ckretz_queue_production'
     migrations_paths: db/migrate_queue
-  cable: &cable
+  cable:
     <<: *default
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
     database: 'ckretz_cable_production'
