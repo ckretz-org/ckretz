@@ -4,22 +4,32 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  min_messages: warning # Minimum log levels, in increasing order:#   debug5, debug4, debug3, debug2, debug1,#   log, notice, warning, error, fatal, and panic# Defaults to warning.
+  username: <%=  ENV.fetch("DB_SUPER_USERNAME", ENV.fetch("DB_USERNAME", "postgres") ) %>
+  password: <%=  ENV.fetch("DB_SUPER_PASSWORD",  ENV.fetch("DB_PASSWORD", "secret") ) %>
+
 
 development:
   primary:
     <<: *default
-    database: ckretz_development
-    host: localhost
-    # Minimum log levels, in increasing order:
-    #   debug5, debug4, debug3, debug2, debug1,
-    #   log, notice, warning, error, fatal, and panic
-    # Defaults to warning.
-    min_messages: log
+    database: ckretz_primary_development
+    url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
+    migrations_paths: db/migrate_primary
+  cache:
+    <<: *default
+    url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
+    database: ckretz_cache_development
+    migrations_paths: db/migrate_cache
   queue:
     <<: *default
-    database: queue_development
-    host: localhost
-    migrations_paths: db/queue_migrate
+    url: <%= ENV['DATABASE_QUEUE_RW_URL'] %>
+    database: ckretz_queue_development
+    migrations_paths: db/migrate_queue
+  cable: &cable
+    <<: *default
+    url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
+    database: ckretz_cable_development
+    migrations_paths: db/migrate_cable
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,58 +37,46 @@ development:
 test:
   primary:
     <<: *default
-    database: 'ckretz_test'
+    database: ckretz_primary_test
     host: localhost
-    url: <%= ENV["DATABASE_URL"] %>
+    url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
+    migrations_paths: db/migrate_primary
+  cache:
+    <<: *default
+    url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
+    database: ckretz_cache_test
+    migrations_paths: db/migrate_cache
   queue:
     <<: *default
-    database: 'queue_test'
-    migrations_paths: db/queue_migrate
+    url: <%= ENV["DATABASE_QUEUE_RW_URL"] %>
+    database: ckretz_queue_test
+    migrations_paths: db/migrate_queue
     host: localhost
-    url: <%= ENV["DATABASE_URL"] %>
+  cable: &cable
+    <<: *default
+    url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
+    database: ckretz_cable_development
+    migrations_paths: db/migrate_cable
+    host: localhost
 
-# As with config/credentials.yml, you never want to store sensitive information,
-# like your database password, in your source code. If your source code is
-# ever seen by anyone, they now have access to your database.
-#
-# Instead, provide the password or a full connection URL as an environment
-# variable when you boot the app. For example:
-#
-#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
-#
-# If the connection URL is provided in the special DATABASE_URL environment
-# variable, Rails will automatically merge its configuration values on top of
-# the values provided in this file. Alternatively, you can specify a connection
-# URL environment variable explicitly:
-#
-#   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
-#
-# Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
-# for a full overview on how database connection configuration can be specified.
-#
 production:
   primary:
     <<: *default
-    database: ckretz_production
-    url: <%= ENV["DATABASE_URL"] %>
+    database: 'ckretz_primary_production'
+    url: <%= ENV["DATABASE_PRIMARY_RW_URL"] %>
+    migrations_paths: db/migrate_primary
+  cache:
+    <<: *default
+    url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
+    database: 'ckretz_cache_production'
+    migrations_paths: db/migrate_cache
   queue:
     <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-    database: queue_production
-    migrations_paths: db/queue_migrate
-
-###
-# CREATE USER ckretz WITH PASSWORD 'secret';
-# \c ckretz_development;
-# grant all privileges on database ckretz_development to ckretz;
-# GRANT ALL privileges on all tables in schema public to ckretz;
-# GRANT ALL ON SCHEMA public TO ckretz;
-# GRANT USAGE ON SCHEMA public TO ckretz;
-# GRANT CONNECT ON DATABASE ckretz_development to ckretz;
-# GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ckretz;
-#
-# \c ckretz_test;
-# grant all privileges on database ckretz_test to ckretz;
-# GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO spx_suites;
-  # GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO spx_suites;
+    url: <%= ENV["DATABASE_QUEUE_RW_URL"] %>
+    database: 'ckretz_queue_production'
+    migrations_paths: db/migrate_queue
+  cable: &cable
+    <<: *default
+    url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
+    database: 'ckretz_cable_production'
+    migrations_paths: db/migrate_cable

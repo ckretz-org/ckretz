@@ -35,6 +35,6 @@ class CreateRlsFunctions < ActiveRecord::Migration[7.1]
       DROP FUNCTION IF EXISTS current_tenant_id CASCADE;
       DROP FUNCTION IF EXISTS current_user_id CASCADE;
       DROP FUNCTION IF EXISTS rls_disabled CASCADE;
-     SQL
+    SQL
   end
 end

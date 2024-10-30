@@ -4,7 +4,14 @@ version: '3'
 
 vars:
   GREETING: Hello, World!
-  DATABASE_URL: "postgresql://ckretz:secret@localhost:5432/ckretz_development"
+  DATABASE_PRIMARY_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/ckretz_primary_development"
+  DATABASE_CACHE_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/ckretz_cache_development"
+  DATABASE_QUEUE_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/ckretz_queue_development"
+  DATABASE_CABLE_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/ckretz_cable_development"
+  DB_USERNAME: "ckretz"
+  DB_PASSWORD: "secret"
+  DB_SUPER_USERNAME: "postgres"
+  DB_SUPER_PASSWORD: "secret"
 
 tasks:
   default:
@@ -56,30 +63,29 @@ tasks:
 
   psql_user_create:
     cmds:
-      - |
-        psql -U $(whoami) postgres -c "
-          create user ckretz with password 'secret';
-        "
+      - cmd: |
+          psql -U $(whoami) postgres -c "
+            create user ckretz with password 'secret';
+          "
+        ignore_error: true
 
   psql_user_permissions:
     cmds:
       - |
-        psql -U $(whoami) ckretz_development -c "
-          GRANT all privileges on DATABASE ckretz_development to ckretz;
-          GRANT ALL privileges on all TABLES in SCHEMA public to ckretz;
-          GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ckretz;
-          GRANT ALL ON SCHEMA public TO ckretz;
-          GRANT USAGE ON SCHEMA public TO ckretz;
-          GRANT CONNECT ON DATABASE ckretz_development to ckretz;
-          GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ckretz;
-        "
-      - |
-        psql -U $(whoami) queue_development -c "
-          GRANT all privileges on DATABASE queue_development to ckretz;
-          GRANT ALL privileges on all TABLES in SCHEMA public to ckretz;
-          GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ckretz;
-          GRANT ALL ON SCHEMA public TO ckretz;
-          GRANT USAGE ON SCHEMA public TO ckretz;
-          GRANT CONNECT ON DATABASE queue_development to ckretz;
-          GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ckretz;
-        "
+        setup () {
+          echo "setting up database: ${2} for user: ${1}";
+          psql -U $(whoami) ${2} -c "
+            GRANT all privileges on DATABASE ${2} to ${1};
+            GRANT ALL privileges on all TABLES in SCHEMA public to ${1};
+            GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ${1};
+            GRANT ALL ON SCHEMA public TO ${1};
+            GRANT USAGE ON SCHEMA public TO ${1};
+            GRANT CONNECT ON DATABASE  ${2} to ${1};
+            GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ${1};
+          "
+        }
+        setup "ckretz" "ckretz_primary_development"
+        setup "ckretz" "ckretz_cache_development"
+        setup "ckretz" "ckretz_queue_development"
+        setup "ckretz" "ckretz_cable_development"
+
