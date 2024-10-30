@@ -673,6 +673,11 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
+    solid_cable (3.0.2)
+      actioncable (>= 7.2)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
     solid_queue (1.0.0)
       activejob (>= 7.1)
       activerecord (>= 7.1)
@@ -825,6 +830,7 @@ DEPENDENCIES
   simplecov
   simplecov-console
   simplecov-csv
+  solid_cable (~> 3.0)
   solid_queue
   spring
   spring-commands-rspec

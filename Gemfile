@@ -134,3 +134,5 @@ gem "neighbor"
 gem "strong_migrations"
 
 gem "activerecord-import"
+
+gem "solid_cable", "~> 3.0"
