@@ -6,6 +6,6 @@ class CreateAccessTokens < ActiveRecord::Migration[7.1]
       t.references :user, null: false, type: :uuid, index: true
       t.timestamps
     end
-    add_index :access_tokens, [:user_id, :token]
+    add_index :access_tokens, [ :user_id, :token ]
   end
 end
