@@ -6,6 +6,6 @@ class CreateSecrets < ActiveRecord::Migration[7.1]
       t.references :user, null: false, type: :uuid, index: true
       t.timestamps
     end
-    add_index :secrets, [:user_id, :name], unique: true
+    add_index :secrets, [ :user_id, :name ], unique: true
   end
 end
