@@ -136,3 +136,5 @@ gem "strong_migrations"
 gem "activerecord-import"
 
 gem "solid_cable", "~> 3.0"
+
+gem "solid_cache", "~> 1.0"
