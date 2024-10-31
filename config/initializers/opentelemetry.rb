@@ -1,4 +1,4 @@
-if ENV["OTEL_EXPORTER_OTLP_ENDPOINT"] && !defined?(::Rails::Console)
+if Rails.env.production? && ENV["OTEL_EXPORTER_OTLP_ENDPOINT"] && !defined?(::Rails::Console)
   require "opentelemetry/sdk"
   require "opentelemetry/instrumentation/rails"
   OpenTelemetry::SDK.configure do |c|

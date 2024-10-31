@@ -31,7 +31,23 @@ require_relative '../spec/features/shared_contexts/current_user'
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 
-WebMock.disable_net_connect!(allow: %w[googlechromelabs.github.io storage.googleapis.com github.com objects.githubusercontent.com 127.0.0.1])
+selenium_app_host =  Socket.ip_address_list.find(&:ipv4_private?).ip_address
+
+ALLOWED_WEBMOCK_ADDRESSES = [
+  "googlechromelabs.github.io",
+  "storage.googleapis.com",
+  "github.com",
+  "objects.githubusercontent.com",
+  "127.0.0.1",
+  "localhost:4000",
+  "#{selenium_app_host}:4000",
+  "127.0.0.1:9515", # chromedriver
+  "localhost:9515", # chromedriver
+  /chromedriver/,
+  /chrome/
+]
+
+WebMock.disable_net_connect!(allow: ALLOWED_WEBMOCK_ADDRESSES)
 
 begin
   ActiveRecord::Migration.maintain_test_schema!

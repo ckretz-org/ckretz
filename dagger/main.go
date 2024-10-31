@@ -44,6 +44,14 @@ func (m *Ckretz) Build(ctx context.Context, source *dagger.Directory) *dagger.Co
 	//return m.BuildEnv(source)
 }
 
+func (m *Ckretz) ChromeService(ctx context.Context) *dagger.Service {
+	return dag.Container().
+		From("selenium/standalone-chromium").
+		WithExposedPort(4444).
+		WithExposedPort(7900).
+		AsService()
+}
+
 func (m *Ckretz) Postgres(ctx context.Context) *dagger.Container {
 	return dag.Container().
 		From("ankane/pgvector").
@@ -58,9 +66,23 @@ func (m *Ckretz) PostgresService(ctx context.Context) *dagger.Service {
 
 // Return the result of running unit tests
 func (m *Ckretz) Test(ctx context.Context, source *dagger.Directory) (string, error) {
+	return m.TestEnv(ctx, source).
+		WithExec([]string{"bundle", "exec", "rake", "db:setup"}).
+		WithExec([]string{"bundle", "exec", "rspec"}).
+		WithExec([]string{"bundle", "exec", "rubocop"}).
+		WithExec([]string{"bundle", "exec", "bundle-audit"}).
+		WithExec([]string{"bundle", "exec", "brakeman"}).
+		Stdout(ctx)
+}
+
+// dagger call test-env --source=. terminal --cmd=bash
+// Return the result of running unit tests
+func (m *Ckretz) TestEnv(ctx context.Context, source *dagger.Directory) (*dagger.Container) {
 	return m.BuildEnv(source).
-		WithServiceBinding("db", m.PostgresService(ctx)). // bind database with the name db
-		WithEnvVariable("DB_HOST", "db").                 // db refers to the service binding
+		WithServiceBinding("db", m.PostgresService(ctx)).
+		WithServiceBinding("chrome", m.ChromeService(ctx)).
+		WithEnvVariable("SELENIUM_HOST", "chrome").
+		WithEnvVariable("DB_HOST", "db").
 		WithEnvVariable("DATABASE_PRIMARY_RW_URL", "postgresql://db:5432/").
 		WithEnvVariable("DATABASE_CACHE_RW_URL", "postgresql://db:5432/").
 		WithEnvVariable("DATABASE_QUEUE_RW_URL", "postgresql://db:5432/").
@@ -72,24 +94,23 @@ func (m *Ckretz) Test(ctx context.Context, source *dagger.Directory) (string, er
 		WithEnvVariable("RAILS_ENV", "test").
 		WithEnvVariable("DB_PASSWORD", "password"). // password set in db container
 		WithEnvVariable("DB_USERNAME", "postgres"). // default user in postgres image
-		WithEnvVariable("DB_NAME", "postgres").     // default db name in postgres image
-		WithExec([]string{"bundle", "exec", "rake", "db:setup"}).
-		WithExec([]string{"bundle", "exec", "rspec"}).
-		WithExec([]string{"bundle", "exec", "rubocop"}).
-		WithExec([]string{"bundle", "exec", "bundle-audit"}).
-		WithExec([]string{"bundle", "exec", "brakeman"}).
-		Stdout(ctx)
+		WithEnvVariable("DB_NAME", "postgres")     // default db name in postgres image
 }
 
 // Build a ready-to-use development environment
+// dagger call build-env --source=. terminal --cmd=bash
+// dagger call build-env --source=.
 func (m *Ckretz) BuildEnv(source *dagger.Directory) *dagger.Container {
 	rubyCache := dag.CacheVolume("rails-ckretz")
+	aptCache := dag.CacheVolume("apt-ckretz")
 	return dag.Container().
-		WithDirectory("/rails", source).
+	    From("registry.docker.com/library/ruby:3.3.1").
+		WithMountedCache("/var/cache/apt/archives/", aptCache).
+		WithExec([]string{"apt", "update"}).
+		WithExec([]string{"apt", "install", "--no-install-recommends" , "-y" , "build-essential" , "git" , "libpq-dev" ,"libvips" , "pkg-config", "curl", "libvips", "postgresql-client"}).
 		WithMountedCache("/usr/local/bundle", rubyCache).
+		WithDirectory("/rails", source).
 		WithWorkdir("/rails").
-		Directory("/rails").
-		DockerBuild().
 		WithExec([]string{"bundle", "install"})
 }
 
