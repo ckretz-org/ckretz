@@ -31,7 +31,7 @@ require_relative '../spec/features/shared_contexts/current_user'
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 
-selenium_app_host =  Socket.ip_address_list.find(&:ipv4_private?).ip_address
+selenium_app_host =  Socket.ip_address_list.find(&:ipv4_private?).try(:ip_address)
 
 ALLOWED_WEBMOCK_ADDRESSES = [
   "googlechromelabs.github.io",
