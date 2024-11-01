@@ -5,9 +5,8 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   min_messages: warning # Minimum log levels, in increasing order:#   debug5, debug4, debug3, debug2, debug1,#   log, notice, warning, error, fatal, and panic# Defaults to warning.
-  username: <%=  ENV.fetch("DB_SUPER_USERNAME", ENV.fetch("DB_USERNAME", "ckretz") ) %>
+  username: <%= Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ? ENV.fetch("DB_SUPER_USERNAME") : ENV.fetch("DB_USERNAME", "ckretz") %>
   password: <%=  ENV.fetch("DB_SUPER_PASSWORD",  ENV.fetch("DB_PASSWORD", "secret") ) %>
-
 
 development:
   primary:
@@ -67,8 +66,8 @@ production:
     migrations_paths: db/migrate_primary
   cache:
     <<: *default
-    database: 'ckretz_cache_production'
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
+    database: 'ckretz_cache_production'
     migrations_paths: db/migrate_cache
   queue:
     <<: *default
