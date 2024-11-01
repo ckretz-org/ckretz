@@ -95,6 +95,8 @@ jobs:
           ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: primarykeycccccccddddddddddddddd
           DB_USERNAME: postgres
           DB_PASSWORD: postgres
+          DB_SUPER_USERNAME: postgres
+          DB_SUPER_PASSWORD: postgres
 
         run: bin/rails db:setup && bundle exec rake assets:precompile && bin/bundle exec rspec
 

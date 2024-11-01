@@ -23,6 +23,10 @@ tasks:
       - echo "rubocop ..."
       - bundle exec rubocop
 
+  dagger_publish:
+    cmds:
+      - dagger call publish --source=. -v
+
   rswag:
     env:
       DOMAIN_NAME: "localhost:3000"
