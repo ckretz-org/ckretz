@@ -94,6 +94,8 @@ func (m *Ckretz) TestEnv(ctx context.Context, source *dagger.Directory) (*dagger
 		WithEnvVariable("RAILS_ENV", "test").
 		WithEnvVariable("DB_PASSWORD", "password"). // password set in db container
 		WithEnvVariable("DB_USERNAME", "postgres"). // default user in postgres image
+		WithEnvVariable("DB_SUPER_PASSWORD", "password"). // password set in db container
+		WithEnvVariable("DB_SUPER_USERNAME", "postgres"). // default user in postgres image
 		WithEnvVariable("DB_NAME", "postgres")     // default db name in postgres image
 }
 
