@@ -6,7 +6,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   min_messages: warning # Minimum log levels, in increasing order:#   debug5, debug4, debug3, debug2, debug1,#   log, notice, warning, error, fatal, and panic# Defaults to warning.
   username: <%= ( Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ) || "#{$0}".include?("rspec")  ? ENV.fetch("DATABASE_SUPER_USERNAME") : ENV.fetch("DATABASE_USERNAME", "ckretz") %>
-  password: <%=  ENV.fetch("DATABASE_SUPER_PASSWORD",  ENV.fetch("DATABASE_PASSWORD", "secret") ) %>
+  password: <%= ( Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ) || "#{$0}".include?("rspec")  ? ENV.fetch("DATABASE_SUPER_PASSWORD") : ENV.fetch("DATABASE_PASSWORD", "secret") %>
 
 development:
   primary:
