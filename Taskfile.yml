@@ -4,14 +4,8 @@ version: '3'
 
 vars:
   GREETING: Hello, World!
-  DATABASE_PRIMARY_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/"
-  DATABASE_CACHE_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/"
-  DATABASE_QUEUE_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/"
-  DATABASE_CABLE_RW_URL: "postgresql://USERNAME:PASSWORD@localhost:5432/"
-  DATABASE_USERNAME: "ckretz"
-  DATABASE_PASSWORD: "secret"
-  DATABASE_SUPER_USERNAME: "postgres"
-  DATABASE_SUPER_PASSWORD: "secret"
+
+dotenv: ['.bin/env']
 
 tasks:
   default:
