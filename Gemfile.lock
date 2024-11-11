@@ -569,7 +569,7 @@ GEM
     rspec-parameterized-table_syntax (1.0.1)
       binding_of_caller
       rspec-parameterized-core (< 2)
-    rspec-rails (7.0.1)
+    rspec-rails (7.1.0)
       actionpack (>= 7.0)
       activesupport (>= 7.0)
       railties (>= 7.0)
@@ -639,7 +639,7 @@ GEM
       tty-which (~> 0.5.0)
       virtus (~> 2.0)
     rubyzip (2.3.2)
-    securerandom (0.3.1)
+    securerandom (0.3.2)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
