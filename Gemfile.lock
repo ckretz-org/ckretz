@@ -518,9 +518,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails-pg-extras (5.4.1)
+    rails-pg-extras (5.4.5)
       rails
-      ruby-pg-extras (= 5.4.1)
+      ruby-pg-extras (= 5.4.5)
     railties (8.0.0)
       actionpack (= 8.0.0)
       activesupport (= 8.0.0)
@@ -534,7 +534,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rdoc (6.7.0)
+    rdoc (6.8.1)
       psych (>= 4.0.0)
     reek (6.3.0)
       dry-schema (~> 1.13.0)
@@ -619,7 +619,7 @@ GEM
       rubocop-rails
     rubocop-rspec (3.2.0)
       rubocop (~> 1.61)
-    ruby-pg-extras (5.4.1)
+    ruby-pg-extras (5.4.5)
       pg
       terminal-table
     ruby-progressbar (1.13.0)
