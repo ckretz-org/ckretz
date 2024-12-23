@@ -103,6 +103,7 @@ group :development do
   gem "web-console"
   gem "rack-mini-profiler"
   gem "spring"
+  gem "ruby-lsp"
   gem "listen"
 end
 
