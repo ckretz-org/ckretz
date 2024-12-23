@@ -106,16 +106,19 @@ func (m *Ckretz) BuildEnv(source *dagger.Directory) *dagger.Container {
 	rubyCache := dag.CacheVolume("rails-ckretz")
 	aptCache := dag.CacheVolume("apt-ckretz")
 	return dag.Container().
-		From("registry.docker.com/library/ruby:3.3.5").
+	    From("registry.docker.com/library/ruby:3.3.5").
 		WithMountedCache("/var/cache/apt/archives/", aptCache).
 		WithExec([]string{"apt", "update"}).
-		WithExec([]string{"apt", "install", "--no-install-recommends", "-y", "build-essential", "git", "libpq-dev", "libvips", "pkg-config", "curl", "libvips", "postgresql-client"}).
+		WithExec([]string{"apt", "install", "--no-install-recommends" , "-y" , "build-essential" , "git" , "libpq-dev" ,"libvips" , "pkg-config", "curl", "libvips", "postgresql-client"}).
 		WithMountedCache("/usr/local/bundle", rubyCache).
-		WithDirectory("/rails", source).
-		WithFile("/f", dagger.File{})
-	WithWorkdir("/rails").
-		WithExec([]string{"bundle", "install"})
+    WithFile("/rails/Gemfile", source.File("Gemfile")).
+    WithFile("/rails/Gemfile.lock", source.File("Gemfile.lock")).
+		WithWorkdir("/rails").
+		WithExec([]string{"bundle", "install"}).
+		WithDirectory("/rails", source)
 }
+
+
 
 // Returns a container that echoes whatever string argument is provided
 func (m *Ckretz) ContainerEcho(stringArg string) *dagger.Container {

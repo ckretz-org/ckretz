@@ -21,6 +21,10 @@ tasks:
     cmds:
       - dagger call publish --source=. -v
 
+  dagger_test:
+    cmds: 
+      -  dagger call test --source=.
+
   rswag:
     env:
       DOMAIN_NAME: "localhost:3000"
