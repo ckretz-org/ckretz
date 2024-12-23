@@ -22,7 +22,7 @@
       "version": "latest"
     },
     "go-task": "latest",
-    "ruby": "3.3.1",
+    "ruby": "3.3.5",
     "git": "latest",
     "gcc": "latest"
   },
@@ -73,6 +73,9 @@
         "make install",
         "cd /tmp",
         "rm -rf ./pg_hint_plan-REL16_1_6_0"
+      ],
+      "docker_compose_keycloak": [
+       "docker compose --project-directory=./keycloak/docker/ up"
       ]
     }
   }
