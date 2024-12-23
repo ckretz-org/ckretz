@@ -77,7 +77,7 @@ func (m *Ckretz) Test(ctx context.Context, source *dagger.Directory) (string, er
 
 // dagger call test-env --source=. terminal --cmd=bash
 // Return the result of running unit tests
-func (m *Ckretz) TestEnv(ctx context.Context, source *dagger.Directory) (*dagger.Container) {
+func (m *Ckretz) TestEnv(ctx context.Context, source *dagger.Directory) *dagger.Container {
 	return m.BuildEnv(source).
 		WithServiceBinding("db", m.PostgresService(ctx)).
 		WithServiceBinding("chrome", m.ChromeService(ctx)).
@@ -92,11 +92,11 @@ func (m *Ckretz) TestEnv(ctx context.Context, source *dagger.Directory) (*dagger
 		WithEnvVariable("ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY", "primarykeycccccccddddddddddddddd").
 		WithEnvVariable("COVERAGE", "0").
 		WithEnvVariable("RAILS_ENV", "test").
-		WithEnvVariable("DATABASE_PASSWORD", "password"). // password set in db container
-		WithEnvVariable("DATABASE_USERNAME", "postgres"). // default user in postgres image
+		WithEnvVariable("DATABASE_PASSWORD", "password").       // password set in db container
+		WithEnvVariable("DATABASE_USERNAME", "postgres").       // default user in postgres image
 		WithEnvVariable("DATABASE_SUPER_PASSWORD", "password"). // password set in db container
 		WithEnvVariable("DATABASE_SUPER_USERNAME", "postgres"). // default user in postgres image
-		WithEnvVariable("DB_NAME", "postgres")     // default db name in postgres image
+		WithEnvVariable("DB_NAME", "postgres")                  // default db name in postgres image
 }
 
 // Build a ready-to-use development environment
@@ -106,13 +106,14 @@ func (m *Ckretz) BuildEnv(source *dagger.Directory) *dagger.Container {
 	rubyCache := dag.CacheVolume("rails-ckretz")
 	aptCache := dag.CacheVolume("apt-ckretz")
 	return dag.Container().
-	    From("registry.docker.com/library/ruby:3.3.1").
+		From("registry.docker.com/library/ruby:3.3.1").
 		WithMountedCache("/var/cache/apt/archives/", aptCache).
 		WithExec([]string{"apt", "update"}).
-		WithExec([]string{"apt", "install", "--no-install-recommends" , "-y" , "build-essential" , "git" , "libpq-dev" ,"libvips" , "pkg-config", "curl", "libvips", "postgresql-client"}).
+		WithExec([]string{"apt", "install", "--no-install-recommends", "-y", "build-essential", "git", "libpq-dev", "libvips", "pkg-config", "curl", "libvips", "postgresql-client"}).
 		WithMountedCache("/usr/local/bundle", rubyCache).
 		WithDirectory("/rails", source).
-		WithWorkdir("/rails").
+		WithFile("/f", dagger.File{})
+	WithWorkdir("/rails").
 		WithExec([]string{"bundle", "install"})
 }
 
