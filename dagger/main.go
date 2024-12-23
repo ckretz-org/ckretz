@@ -106,7 +106,7 @@ func (m *Ckretz) BuildEnv(source *dagger.Directory) *dagger.Container {
 	rubyCache := dag.CacheVolume("rails-ckretz")
 	aptCache := dag.CacheVolume("apt-ckretz")
 	return dag.Container().
-		From("registry.docker.com/library/ruby:3.3.1").
+		From("registry.docker.com/library/ruby:3.3.5").
 		WithMountedCache("/var/cache/apt/archives/", aptCache).
 		WithExec([]string{"apt", "update"}).
 		WithExec([]string{"apt", "install", "--no-install-recommends", "-y", "build-essential", "git", "libpq-dev", "libvips", "pkg-config", "curl", "libvips", "postgresql-client"}).
