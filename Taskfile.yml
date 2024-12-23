@@ -71,6 +71,10 @@ tasks:
           "
         ignore_error: true
 
+  psql:
+    cmds:
+      - psql -U $(whoami) ckretz_primary_development
+
   psql_user_permissions:
     cmds:
       - |
