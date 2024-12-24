@@ -124,7 +124,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    database_consistency (1.7.26)
+    database_consistency (1.7.27)
       activerecord (>= 3.2)
     date (3.4.1)
     debug (1.10.0)
