@@ -1,0 +1,12 @@
+/* Inter font - https://rsms.me/inter/ */
+@import url('https://rsms.me/inter/inter.css');
+
+:root {
+  font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+@supports (font-variation-settings: normal) {
+  :root {
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+}
