@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.4.7"
+ruby "3.3.10"
 
 gem "rails", "~> 8"
 
@@ -97,7 +97,7 @@ group :development, :test do
   gem "database_consistency", require: false
   gem "faker"
   gem "prosopite"
-  # gem "pg_query"
+  gem "pg_query"
 end
 
 group :development do
