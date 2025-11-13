@@ -15,6 +15,9 @@ RSpec/SpecFilePathFormat:
 RSpec/AnyInstance:
   Enabled: false
 
+RSpec/DescribedClass:
+  Enabled: false
+
 require:
   - rubocop-performance
   - rubocop-rspec
