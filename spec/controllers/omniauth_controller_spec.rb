@@ -16,9 +16,13 @@ RSpec.describe OmniauthController, type: :request do
                                                                          })
     end
 
-    it "redirects to oauth server" do
+    it "redirects" do
       post "/auth/google_oauth2"
       expect(response).to have_http_status(:found)
+    end
+
+    it "redirects to oauth server" do
+      post "/auth/google_oauth2"
       expect(response.location).to eql("http://www.example.com/auth/google_oauth2/callback")
     end
   end
@@ -29,8 +33,11 @@ RSpec.describe OmniauthController, type: :request do
       post "/auth/google_oauth2/callback"
     end
 
-    it "redirects to oauth server" do
+    it "redirects" do
       expect(CommandHandlers::Users::Create).to have_received(:handle)
+    end
+
+    it "redirects to oauth server" do
       expect(response).to have_http_status(:found)
     end
   end
@@ -39,6 +46,7 @@ RSpec.describe OmniauthController, type: :request do
     before do
       get "/auth/failure", params: { message: "ActionController::InvalidAuthenticityToken", strategy: "google_oauth2" }
     end
+
     it "redirects to welcome path" do
       expect(response).to have_http_status(:found)
       expect(response.location).to eql("http://www.example.com/welcome")

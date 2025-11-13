@@ -25,6 +25,7 @@ RSpec.describe SecretValuesController, type: :request do
       expect(response.media_type).to eq('text/vnd.turbo-stream.html')
       expect(response.body).to include('<turbo-stream action="remove" target="12345"></turbo-stream>')
     end
+
     it 'destroys the existing secret_value' do
       secret_value
       expect {

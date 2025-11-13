@@ -19,10 +19,12 @@ RSpec.describe AccessTokensController, type: :request do
     before do
       allow(current_user).to receive(:access_tokens).and_return([ access_token ])
     end
+
     it do
       get access_tokens_path
-      expect(response.status).to eql(200)
+      expect(response.status).to be(200)
     end
+
     it do
       get access_tokens_path
       expect(response.body).to include(access_token.name)
@@ -32,7 +34,7 @@ RSpec.describe AccessTokensController, type: :request do
   describe "show" do
     it do
       get access_token_path(id: access_token.id)
-      expect(response.status).to eql(200)
+      expect(response.status).to be(200)
       expect(response.body).to include(access_token.name)
     end
   end
@@ -40,33 +42,37 @@ RSpec.describe AccessTokensController, type: :request do
   describe "new" do
     it do
       get new_access_token_path(format: :turbo_stream)
-      expect(response.status).to eql(200)
+      expect(response.status).to be(200)
     end
   end
 
   describe "create" do
-    context "valid attributes" do
+    context "when valid attributes" do
       before do
         allow_any_instance_of(AccessToken).to receive(:save).and_return(true)
       end
+
       it do
         post access_tokens_path, params: { access_token: { name: "new_token_name" } }
-        expect(response.status).to eql(302)
+        expect(response.status).to be(302)
       end
     end
-    context "invalid attributes" do
+
+    context "when invalid attributes" do
       it do
         post access_tokens_path, params: {}
-        expect(response.status).to eql(400)
+        expect(response.status).to be(400)
       end
     end
-    context "validation failure" do
+
+    context "when validation failure" do
       before do
         allow_any_instance_of(AccessToken).to receive(:save).and_return(false)
       end
+
       it do
         post access_tokens_path, params: { access_token: { name: "new_token_name" } }
-        expect(response.status).to eql(422)
+        expect(response.status).to be(422)
       end
     end
   end
@@ -75,9 +81,10 @@ RSpec.describe AccessTokensController, type: :request do
     before do
       allow(access_token).to receive(:destroy!)
     end
+
     it do
       delete access_token_path(id: access_token.id)
-      expect(response.status).to eql(302)
+      expect(response.status).to be(302)
     end
   end
 end

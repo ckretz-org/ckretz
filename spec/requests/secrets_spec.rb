@@ -11,8 +11,9 @@ RSpec.describe SecretsController, type: :request do
         let(:'Accept') { 'application/json' }
 
         before do
-          allow_any_instance_of(SecretsController).to receive(:current_user).and_return(current_user)
+          allow_any_instance_of(described_class).to receive(:current_user).and_return(current_user)
         end
+
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -20,6 +21,7 @@ RSpec.describe SecretsController, type: :request do
             }
           }
         end
+
         run_test!
       end
     end

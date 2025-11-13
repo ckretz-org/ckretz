@@ -8,8 +8,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:column) { 'name' }
 
     before do
-      allow(helper).to receive(:request).and_return(double(params: { controller: :secrets, action: :index }))
-      allow(helper).to receive(:params).and_return(params)
+      allow(helper).to receive_messages(request: double(params: { controller: :secrets, action: :index }), params: params)
     end
 
     context 'when params[:sort] is not equal to column' do
@@ -36,8 +35,10 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
   describe '#turbo_id_for' do
     let(:object) { build(:secret) }
+
     context 'when id_or_hash is false' do
       it 'returns the object id' do
         expect(helper.turbo_id_for(object: object, id_or_hash: false)).to eq(object.hash)
