@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe 'Create Secret', type: :system, js: true do
+RSpec.describe 'Create Secret', :js, type: :system do
   include_context 'current_user'
   let!(:secret) { create(:secret, user: current_user) }
 
-  scenario 'valid input' do
+  scenario 'valid input' do # rubocop:disable RSpec/ExampleLength
     visit secrets_path
     click_link 'New'
     assert_selector 'h2', text: 'New'
