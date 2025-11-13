@@ -27,6 +27,10 @@ RSpec.describe SecretsController, type: :request do
     it do
       get secrets_path
       expect(response.status).to be(302)
+    end
+
+    it do
+      get secrets_path
       expect(response.location).to include("welcome")
     end
   end
@@ -63,6 +67,10 @@ RSpec.describe SecretsController, type: :request do
     it do
       get secrets_path
       expect(response.status).to be(200)
+    end
+
+    it do
+      get secrets_path
       expect(response.body).to include(secret_1.name)
     end
   end
@@ -71,6 +79,10 @@ RSpec.describe SecretsController, type: :request do
     it do
       get secret_path(id: secret_1.id, format: :html)
       expect(response.status).to be(200)
+    end
+
+    it do
+      get secret_path(id: secret_1.id, format: :html)
       expect(response.body).to include(secret_1.name)
     end
   end

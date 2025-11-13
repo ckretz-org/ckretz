@@ -47,9 +47,15 @@ RSpec.describe OmniauthController, type: :request do
       get "/auth/failure", params: { message: "ActionController::InvalidAuthenticityToken", strategy: "google_oauth2" }
     end
 
-    it "redirects to welcome path" do
+    it do
       expect(response).to have_http_status(:found)
+    end
+
+    it do
       expect(response.location).to eql("http://www.example.com/welcome")
+    end
+
+    it do
       expect(flash[:alert]).to eq("ActionController::InvalidAuthenticityToken")
     end
   end

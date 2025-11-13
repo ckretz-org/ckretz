@@ -10,11 +10,18 @@ RSpec.describe EmbedSecretJob, type: :job do
     allow(secret).to receive(:update)
   end
 
-  it 'performs the job correctly' do
+  it do
     described_class.perform_now(id: secret.id)
-
     expect(Secret).to have_received(:find).with(secret.id)
+  end
+
+  it do
+    described_class.perform_now(id: secret.id)
     expect(Net::HTTP).to have_received(:post)
+  end
+
+  it do
+    described_class.perform_now(id: secret.id)
     expect(secret).to have_received(:update).with(embedding: "some_embedding")
   end
 

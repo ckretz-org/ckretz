@@ -9,6 +9,12 @@ inherit_gem:
 # Layout/SpaceInsideArrayLiteralBrackets:
 #   Enabled: false
 
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
 require:
   - rubocop-performance
   - rubocop-rspec

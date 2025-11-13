@@ -5,10 +5,10 @@ RSpec.describe SecretsController, type: :request do
     get('list secrets') do
       consumes 'application/json'
       produces 'application/json'
-      response(200, 'successful') do
+      response(200, 'successful') do # rubocop:disable RSpec/NestedGroups
         let(:current_user) { create(:user) }
         let(:secrets) { create_list(:secret, 2, user: current_user) }
-        let(:'Accept') { 'application/json' }
+        let(:'Accept') { 'application/json' } # rubocop:disable RSpec/VariableName
 
         before do
           allow_any_instance_of(described_class).to receive(:current_user).and_return(current_user)

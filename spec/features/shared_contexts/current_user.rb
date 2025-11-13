@@ -1,4 +1,4 @@
-RSpec.shared_context 'current_user' do
+RSpec.shared_context 'current_user' do # rubocop:disable RSpec/ContextWording
   let(:current_user) { create(:user) }
   before do
     OmniAuth.config.test_mode = false

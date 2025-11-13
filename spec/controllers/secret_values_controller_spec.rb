@@ -14,15 +14,27 @@ RSpec.describe SecretValuesController, type: :request do
     it do
       get new_secret_value_path(format: :turbo_stream)
       expect(response.status).to eq(200)
+    end
+
+    it do
+      get new_secret_value_path(format: :turbo_stream)
       expect(response.media_type).to eq('text/vnd.turbo-stream.html')
+    end
+
+    it do
+      get new_secret_value_path(format: :turbo_stream)
       expect(response.body).to include('target="secret_values"')
     end
   end
 
   describe '#destroy' do
-    it 'destroys NON existing secret_value' do
+    it 'destroys NON existing secret_value, media-type' do
       delete secret_value_path("12345", format: :turbo_stream)
       expect(response.media_type).to eq('text/vnd.turbo-stream.html')
+    end
+
+    it 'destroys NON existing secret_value, turbo-stream' do
+      delete secret_value_path("12345", format: :turbo_stream)
       expect(response.body).to include('<turbo-stream action="remove" target="12345"></turbo-stream>')
     end
 
