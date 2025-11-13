@@ -11,7 +11,7 @@ RSpec.describe SecretsController, type: :request do
         let(:'Accept') { 'application/json' } # rubocop:disable RSpec/VariableName
 
         before do
-          allow_any_instance_of(described_class).to receive(:current_user).and_return(current_user)
+          allow_any_instance_of(SecretsController).to receive(:current_user).and_return(current_user)
         end
 
         after do |example|
