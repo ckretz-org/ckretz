@@ -66,21 +66,21 @@ tasks:
   psql_user_create:
     cmds:
       - cmd: |
-          psql -U $(whoami) postgres -c "
+          psql-1   Q! -U $(whoami) postgres -c "
             create user ckretz with password 'secret';
           "
         ignore_error: true
 
   psql:
     cmds:
-      - psql -U $(whoami) ckretz_primary_development
+      - pgcli -U $(whoami) ckretz_primary_development
 
   psql_user_permissions:
     cmds:
       - |
         setup () {
           echo "setting up database: ${2} for user: ${1}";
-          psql -U $(whoami) ${2} -c "
+          psql-18 -U $(whoami) ${2} -c "
             GRANT all privileges on DATABASE ${2} to ${1};
             GRANT ALL privileges on all TABLES in SCHEMA public to ${1};
             GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ${1};

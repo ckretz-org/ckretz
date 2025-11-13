@@ -1,13 +1,15 @@
 source "https://rubygems.org"
 
-ruby "3.3.5"
+ruby "3.4.7"
 
 gem "rails", "~> 8"
 
 gem "propshaft"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.5.6"
+#  gem install pg -- --with-pg-config=/opt/homebrew/bin/pg_config-18
+#  bundle config build.pg --with-pg-config=/opt/homebrew/bin/pg_config-18
+gem "pg", "~> 1.5.9"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 6"
@@ -63,13 +65,14 @@ gem "openfeature-sdk", require: "open_feature/sdk"
 # https://github.com/open-feature/ruby-sdk-contrib/tree/main/providers/openfeature-flagd-provider
 # gem "openfeature-flagd-provider", github: "open-feature/ruby-sdk-contrib", glob: "providers/openfeature-flagd-provider/openfeature-flagd-provider.gemspec"
 gem "openfeature-flagd-provider", "~> 0.1.0", require: "openfeature/flagd/provider"
+gem 'grpc', '~> 1.75'
 
 gem "opentelemetry-sdk"
 gem "opentelemetry-instrumentation-rails"
 gem "opentelemetry-exporter-otlp"
 # gem " rails_semantic_logger "
 
-gem "pagy"
+gem "pagy", "~> 9.3.3"
 gem "pg_search"
 
 gem "rswag-api"
@@ -94,7 +97,7 @@ group :development, :test do
   gem "database_consistency", require: false
   gem "faker"
   gem "prosopite"
-  gem "pg_query"
+  # gem "pg_query"
 end
 
 group :development do
