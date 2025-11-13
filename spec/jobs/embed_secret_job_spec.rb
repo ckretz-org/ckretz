@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EmbedSecretJob, type: :job do
   let(:secret) { create(:secret) }
-  let(:response_body) { { "embedding" => "some_embedding" }.to_json }
+  let(:response_body) { { "embedding":  "some_embedding" }.to_json }
 
   before do
     allow(Net::HTTP).to receive(:post).and_return(OpenStruct.new(code: "200", body: response_body))
