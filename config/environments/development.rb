@@ -95,7 +95,18 @@ Rails.application.configure do
   # propshaft
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  if  ENV.fetch("LOGGER", "standard") == "open_telemetry"
+   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+
+  if ENV.fetch("LOGGER", "standard") == "fluentd"
+     config.lograge.enabled = true
+     config.lograge.formatter = Lograge::Formatters::Json.new
+     config.lograge.logger = Fluent::Logger::LevelFluentLogger.new(ENV.fetch("FLUENTD_HOST", "ckretz_development"))
+     config.lograge.logger.formatter = proc do |severity, datetime, progname, message|
+       { messages: message.include?('{"method":') ? message : { body: message }.to_json }
+     end
+    config.logger = config.lograge.logger
+
+  elsif  ENV.fetch("LOGGER", "standard") == "open_telemetry"
     logger = ::Logger.new(STDOUT)
     logger.formatter = proc do |severity, time, progname, msg|
       span_id = OpenTelemetry::Trace.current_span.context.hex_span_id

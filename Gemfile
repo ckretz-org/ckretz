@@ -140,5 +140,11 @@ gem "solid_cable", "~> 3.0"
 
 gem "solid_cache", "~> 1.0"
 
+gem "fluent-logger"
+gem "lograge"
+
+## Fluentd Setup
 gem "fluentd"
 gem "fluent-plugin-opensearch"
+gem "fluent-plugin-parser"
+gem "oj"

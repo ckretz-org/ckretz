@@ -259,6 +259,9 @@ GEM
       path_expander (~> 1.0)
       ruby_parser (~> 3.1, > 3.1.0)
       sexp_processor (~> 4.8)
+    fluent-logger (0.10.0)
+      logger (~> 1.6)
+      msgpack (>= 1.0.0, < 2)
     fluent-plugin-opensearch (1.1.5)
       aws-sdk-core (~> 3)
       excon
@@ -267,6 +270,8 @@ GEM
       faraday_middleware-aws-sigv4 (~> 1.0.1)
       fluentd (>= 0.14.22)
       opensearch-ruby (>= 3.0.1)
+    fluent-plugin-parser (0.4.1)
+      fluentd (>= 0.10.54)
     fluentd (1.19.0)
       async-http (~> 0.86)
       base64 (~> 0.2)
@@ -414,6 +419,11 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logger (1.7.0)
+    lograge (0.14.0)
+      actionpack (>= 4)
+      activesupport (>= 4)
+      railties (>= 4)
+      request_store (~> 1.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -490,6 +500,9 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.3)
       version_gem (~> 1.1, >= 1.1.9)
+    oj (3.16.12)
+      bigdecimal (>= 3.0)
+      ostruct (>= 0.2)
     omniauth (2.1.4)
       hashie (>= 3.4.6)
       logger
@@ -685,6 +698,8 @@ GEM
     regexp_parser (2.11.3)
     reline (0.6.3)
       io-console (~> 0.5)
+    request_store (1.7.0)
+      rack (>= 1.4)
     rexml (3.4.4)
     rouge (4.6.1)
     rspec (3.13.2)
@@ -935,7 +950,9 @@ DEPENDENCIES
   factory_bot_rails
   faker
   faraday-retry
+  fluent-logger
   fluent-plugin-opensearch
+  fluent-plugin-parser
   fluentd
   grpc (~> 1.75)
   guard
@@ -947,8 +964,10 @@ DEPENDENCIES
   jbuilder
   jwt
   listen
+  lograge
   mission_control-jobs
   neighbor
+  oj
   omniauth
   omniauth-github (~> 2.0.0)
   omniauth-google-oauth2
