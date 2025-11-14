@@ -139,3 +139,6 @@ gem "activerecord-import"
 gem "solid_cable", "~> 3.0"
 
 gem "solid_cache", "~> 1.0"
+
+gem "fluentd"
+gem "fluent-plugin-opensearch"

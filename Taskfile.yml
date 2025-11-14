@@ -12,6 +12,9 @@ tasks:
     cmds:
       - echo "{{.GREETING}}"
     silent: true
+  fluentd:
+    cmds:
+      - bundle exec fluentd -c ./fluent/fluent.conf
   rubocop:
     cmds:
       - echo "rubocop ..."
