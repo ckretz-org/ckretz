@@ -14,57 +14,81 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe "HTTP Basic Authentication" do
-    context "when accessing a route that uses AdminController" do
-      context "with valid credentials" do
-        it "allows access" do
-          credentials = ActionController::HttpAuthentication::Basic.encode_credentials(admin_username, admin_password)
-          request.env["HTTP_AUTHORIZATION"] = credentials
-          get :index
+    context "with valid credentials" do
+      it "allows access with 200 status" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials(admin_username, admin_password)
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
 
-          expect(response.status).to eq(200)
-          expect(response.body).to eq("OK")
-        end
+        expect(response.status).to eq(200)
       end
 
-      context "with invalid username" do
-        it "denies access" do
-          credentials = ActionController::HttpAuthentication::Basic.encode_credentials("wrong_user", admin_password)
-          request.env["HTTP_AUTHORIZATION"] = credentials
-          get :index
+      it "returns OK response body" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials(admin_username, admin_password)
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
 
-          expect(response.status).to eq(401)
-          expect(response.headers["WWW-Authenticate"]).to match(/Basic/)
-        end
+        expect(response.body).to eq("OK")
+      end
+    end
+
+    context "with invalid username" do
+      it "denies access with 401 status" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials("wrong_user", admin_password)
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
+
+        expect(response.status).to eq(401)
       end
 
-      context "with invalid password" do
-        it "denies access" do
-          credentials = ActionController::HttpAuthentication::Basic.encode_credentials(admin_username, "wrong_password")
-          request.env["HTTP_AUTHORIZATION"] = credentials
-          get :index
+      it "includes WWW-Authenticate header" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials("wrong_user", admin_password)
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
 
-          expect(response.status).to eq(401)
-          expect(response.headers["WWW-Authenticate"]).to match(/Basic/)
-        end
+        expect(response.headers["WWW-Authenticate"]).to match(/Basic/)
+      end
+    end
+
+    context "with invalid password" do
+      it "denies access with 401 status" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials(admin_username, "wrong_password")
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
+
+        expect(response.status).to eq(401)
       end
 
-      context "without credentials" do
-        it "prompts for authentication" do
-          get :index
+      it "includes WWW-Authenticate header" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials(admin_username, "wrong_password")
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
 
-          expect(response.status).to eq(401)
-          expect(response.headers["WWW-Authenticate"]).to match(/Basic/)
-        end
+        expect(response.headers["WWW-Authenticate"]).to match(/Basic/)
+      end
+    end
+
+    context "without credentials" do
+      it "prompts for authentication with 401 status" do
+        get :index
+
+        expect(response.status).to eq(401)
       end
 
-      context "with empty credentials" do
-        it "denies access" do
-          credentials = ActionController::HttpAuthentication::Basic.encode_credentials("", "")
-          request.env["HTTP_AUTHORIZATION"] = credentials
-          get :index
+      it "includes WWW-Authenticate header" do
+        get :index
 
-          expect(response.status).to eq(401)
-        end
+        expect(response.headers["WWW-Authenticate"]).to match(/Basic/)
+      end
+    end
+
+    context "with empty credentials" do
+      it "denies access" do
+        credentials = ActionController::HttpAuthentication::Basic.encode_credentials("", "")
+        request.env["HTTP_AUTHORIZATION"] = credentials
+        get :index
+
+        expect(response.status).to eq(401)
       end
     end
   end
