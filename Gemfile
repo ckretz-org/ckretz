@@ -58,7 +58,7 @@ gem "rails-pg-extras"
 gem "omniauth"
 gem "omniauth-github", "~> 2.0.0"
 gem "omniauth-google-oauth2"
-gem "omniauth-rails_csrf_protection"
+gem "omniauth-rails_csrf_protection", github: "cookpad/omniauth-rails_csrf_protection", branch: "move-away-from-deprecated-active-support-configurable"
 gem "dry-struct"
 
 gem "openfeature-sdk", require: "open_feature/sdk"

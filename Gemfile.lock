@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/cookpad/omniauth-rails_csrf_protection.git
+  revision: 9df9b4ba42645284922ad3fe6e53f05dd82539f0
+  branch: move-away-from-deprecated-active-support-configurable
+  specs:
+    omniauth-rails_csrf_protection (1.0.2)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
+
+GIT
   remote: https://github.com/sbiastoch/rls_rails.git
   revision: fd2099ccfd7350b55597c8522f298eb0c3fa7136
   branch: master
@@ -519,9 +528,6 @@ GEM
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
       omniauth (~> 2.0)
-    omniauth-rails_csrf_protection (1.0.2)
-      actionpack (>= 4.2)
-      omniauth (~> 2.0)
     openfeature-flagd-provider (0.1.2)
       grpc (~> 1.50)
       openfeature-sdk (~> 0.3.1)
@@ -970,7 +976,7 @@ DEPENDENCIES
   omniauth
   omniauth-github (~> 2.0.0)
   omniauth-google-oauth2
-  omniauth-rails_csrf_protection
+  omniauth-rails_csrf_protection!
   openfeature-flagd-provider (~> 0.1.0)
   openfeature-sdk
   opentelemetry-exporter-otlp
