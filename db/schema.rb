@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_06_14_105028) do
+ActiveRecord::Schema[8.1].define(version: 2024_06_14_105028) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pg_catalog.plpgsql"
@@ -19,45 +19,45 @@ ActiveRecord::Schema[8.0].define(version: 2024_06_14_105028) do
   enable_extension "vector"
 
   create_table "access_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "last_used_at"
     t.string "name", null: false
     t.string "token", null: false, comment: "sensitive_data=true"
-    t.uuid "user_id", null: false
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: true, null: false
-    t.datetime "last_used_at"
+    t.uuid "user_id", null: false
     t.index ["name"], name: "index_access_tokens_on_name"
     t.index ["token"], name: "index_access_tokens_on_token"
     t.index ["user_id", "token"], name: "index_access_tokens_on_user_id_and_token"
   end
 
   create_table "secret_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.string "value", null: false, comment: "sensitive_data=true"
-    t.uuid "secret_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.uuid "secret_id", null: false
     t.datetime "updated_at", null: false
+    t.string "value", null: false, comment: "sensitive_data=true"
     t.index ["name", "secret_id"], name: "index_secret_values_name_secret_id", unique: true
     t.index ["secret_id"], name: "index_secret_values_on_secret_id"
   end
 
   create_table "secrets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
-    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.vector "embedding", limit: 768
+    t.string "name", null: false
     t.integer "secret_values_count", default: 0
+    t.datetime "updated_at", null: false
+    t.uuid "user_id", null: false
     t.index ["embedding"], name: "index_secrets_on_embedding", opclass: :vector_l2_ops, using: :hnsw
     t.index ["name"], name: "index_secrets_on_name"
     t.index ["user_id", "name"], name: "index_secrets_on_user_id_and_name", unique: true
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.citext "email", null: false, comment: "sensitive_data=true"
     t.integer "access_tokens_count", default: 0, null: false
-    t.integer "secrets_count", default: 0, null: false
     t.datetime "created_at", null: false
+    t.citext "email", null: false, comment: "sensitive_data=true"
+    t.integer "secrets_count", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
