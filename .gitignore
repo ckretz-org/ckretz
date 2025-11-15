@@ -46,3 +46,8 @@ http/
 swagger/
 *.swp
 database_consistency_*
+
+# ClaudeOnRails
+.claude-on-rails/sessions/
+.claude-swarm/
+claude-swarm.log

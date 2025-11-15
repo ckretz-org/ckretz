@@ -98,6 +98,7 @@ group :development, :test do
   gem "faker"
   gem "prosopite"
   gem "pg_query"
+  gem "claude-on-rails"
 end
 
 group :development do
