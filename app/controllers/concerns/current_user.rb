@@ -3,9 +3,9 @@ module CurrentUser
 
   included do
     def current_user
-      user = current_access_token_user || current_session_user
-      RLS.set_tenant user
-      @current_user = user
+      @current_user ||= current_access_token_user || current_session_user
+      RLS.set_tenant @current_user
+      @current_user
     end
 
     def current_access_token_user
