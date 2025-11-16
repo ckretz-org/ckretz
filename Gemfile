@@ -125,6 +125,8 @@ group :test do
   gem "rspec-parameterized", ">= 1.0.0"
   gem "spring-commands-rspec"
   gem "test-prof", "~> 1.3"
+  gem "cucumber-rails", require: false
+  gem "database_cleaner"
 end
 
 gem "solid_queue"

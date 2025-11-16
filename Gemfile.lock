@@ -187,6 +187,41 @@ GEM
       rexml
     crass (1.0.6)
     csv (3.3.5)
+    cucumber (10.1.1)
+      base64 (~> 0.2)
+      builder (~> 3.2)
+      cucumber-ci-environment (> 9, < 11)
+      cucumber-core (> 15, < 17)
+      cucumber-cucumber-expressions (> 17, < 19)
+      cucumber-html-formatter (> 20.3, < 22)
+      diff-lcs (~> 1.5)
+      logger (~> 1.6)
+      mini_mime (~> 1.1)
+      multi_test (~> 1.1)
+      sys-uname (~> 1.3)
+    cucumber-ci-environment (10.0.1)
+    cucumber-core (15.3.0)
+      cucumber-gherkin (> 27, < 35)
+      cucumber-messages (> 26, < 30)
+      cucumber-tag-expressions (> 5, < 9)
+    cucumber-cucumber-expressions (18.0.1)
+      bigdecimal
+    cucumber-gherkin (34.0.0)
+      cucumber-messages (> 25, < 29)
+    cucumber-html-formatter (21.15.1)
+      cucumber-messages (> 19, < 28)
+    cucumber-messages (27.2.0)
+    cucumber-rails (4.0.0)
+      capybara (>= 3.25, < 4)
+      cucumber (>= 7, < 11)
+      railties (>= 6.1, < 9)
+    cucumber-tag-expressions (8.0.0)
+    database_cleaner (2.1.0)
+      database_cleaner-active_record (>= 2, < 3)
+    database_cleaner-active_record (2.2.2)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0)
+    database_cleaner-core (2.0.1)
     database_consistency (2.0.8)
       activerecord (>= 3.2)
     date (3.5.0)
@@ -475,6 +510,7 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
+    memoist3 (1.0.0)
     method_source (1.1.0)
     metrics (0.15.0)
     mime-types (3.7.0)
@@ -496,6 +532,7 @@ GEM
       turbo-rails
     msgpack (1.8.0)
     multi_json (1.17.0)
+    multi_test (1.1.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
     multipart-post (2.4.1)
@@ -908,6 +945,9 @@ GEM
     strong_migrations (2.5.1)
       activerecord (>= 7.1)
     strptime (0.2.5)
+    sys-uname (1.4.1)
+      ffi (~> 1.1)
+      memoist3 (~> 1.0.0)
     tailwindcss-rails (3.3.2)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 3.0)
@@ -995,6 +1035,8 @@ DEPENDENCIES
   bundler-audit
   capybara
   claude-on-rails
+  cucumber-rails
+  database_cleaner
   database_consistency
   debug
   dry-struct
