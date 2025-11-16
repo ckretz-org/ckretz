@@ -97,8 +97,26 @@ Rails.application.configure do
      config.lograge.enabled = true
      config.lograge.formatter = Lograge::Formatters::Json.new
      config.lograge.logger = Fluent::Logger::LevelFluentLogger.new(ENV.fetch("FLUENTD_HOST", "ckretz_development"))
+     config.lograge.custom_options = lambda do |event|
+     # puts  "\nevent: #{event.payload.dig(:custom_payload, :current_user_id)}\n"
+       { current_user_id: event.payload.dig(:custom_payload, :current_user_id) }
+     end
      config.lograge.logger.formatter = proc do |severity, datetime, progname, message|
-       { messages: message.include?('{"method":') ? message : { body: message }.to_json }
+       # puts "\nmessage: #{message}\n"
+       {
+         span_id: OpenTelemetry::Trace.current_span.context.hex_span_id,
+         trace_id: OpenTelemetry::Trace.current_span.context.hex_trace_id,
+         operation: OpenTelemetry::Trace.current_span.try(:name),
+         severity: severity,
+         progname: progname,
+         messages: if message.include?('{"method":')
+                     message
+                   elsif message.is_a?(Hash)
+                     message.to_json
+                   else
+                     { body: message }.to_json
+                   end
+       }
      end
     config.logger = config.lograge.logger
 
