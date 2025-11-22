@@ -6,7 +6,7 @@ Feature: User sign in
 
 Scenario: Successful Welcome Page
   Given a user exists
-  Given I open the login page
+  Given Someone visits the login page
   Then I should see "Welcome to CKRetz"
   Given I click "Login with Developer"
   And I fill in "Name" with "tester"

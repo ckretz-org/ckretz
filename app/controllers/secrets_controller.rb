@@ -1,9 +1,7 @@
 class SecretsController < ApplicationController
   include CurrentUser
   before_action :set_secret, only: %i[ show edit update destroy ]
-  after_action do
-    Rails.logger.info(trace: "SecretsController##{action_name} called by user #{current_user.id}", current_user_id: current_user.id)
-  end
+
   include Pagy::Backend
 
   # GET /secrets or /secrets.json

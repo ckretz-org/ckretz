@@ -19,7 +19,7 @@ Then("I should be on the secrets page") do
   expect(current_path).to eq(secrets_path)
 end
 
-Given(/^I open the login page$/) do
+Given(/^Someone visits the login page$/) do
   visit welcome_path
 end
 

@@ -2,8 +2,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Configure 'rails notes' to inspect Cucumber files
-  config.annotations.register_directories('features')
-  config.annotations.register_extensions('feature') { |tag| /#\s*(#{tag}):?\s*(.*)$/ }
+  config.annotations.register_directories("features")
+  config.annotations.register_extensions("feature") { |tag| /#\s*(#{tag}):?\s*(.*)$/ }
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -102,7 +102,10 @@ Rails.application.configure do
      config.lograge.formatter = Lograge::Formatters::Json.new
      config.lograge.logger = Fluent::Logger::LevelFluentLogger.new(ENV.fetch("FLUENTD_HOST", "ckretz_development"))
      config.lograge.custom_options = lambda do |event|
-       { current_user_id: event.payload.dig(:custom_payload, :current_user_id) }
+       {
+         current_user_id: event.payload.dig(:custom_payload, :current_user_id),
+         visitor_id: event.payload.dig(:custom_payload, :visitor_id)
+       }
      end
      config.lograge.logger.formatter = proc do |severity, datetime, progname, message|
        {
